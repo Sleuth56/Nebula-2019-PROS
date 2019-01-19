@@ -17,8 +17,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	// pros::lcd::initialize();
-	// pros::lcd::set_text(0, "testing123");
+	pros::lcd::initialize();
+	pros::lcd::set_text(0, "testing");
 	//
 	// pros::lcd::register_btn1_cb(on_center_button);
 }
