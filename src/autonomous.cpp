@@ -1,3 +1,4 @@
+//------Importing stuff.------
 #include "main.h"
 #include "autonomous.h"
 
@@ -12,8 +13,11 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
+
 void autonomous() {
-  
+	//------tells the user that the autonomous faze has started.------
+  pros::lcd::set_text(0, "autonomous has started");
+
   pros::delay(10000);
   Intake.move_absolute(1000, 200);
 

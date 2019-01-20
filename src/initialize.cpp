@@ -17,8 +17,10 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+  //------turn on the screen------
 	pros::lcd::initialize();
-	pros::lcd::set_text(0, "testing");
+	//------tells the user that the initialization faze has started.------
+	pros::lcd::set_text(0, "initialization has started");
 	//
 	// pros::lcd::register_btn1_cb(on_center_button);
 }

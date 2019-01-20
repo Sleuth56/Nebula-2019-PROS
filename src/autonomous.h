@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+//------Defining the motor ports.------
 #define FLMotorport 11
 #define FRMotorport 20
 #define BLMotorport 12
@@ -9,6 +11,7 @@
 #define Shooter1port 9
 #define Shooter2port 10
 
+//------Defining the motors.------
 pros::Motor FLMotor (FLMotorport, pros::E_MOTOR_GEARSET_18, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor BLMotor (BLMotorport, pros::E_MOTOR_GEARSET_18, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor FRMotor (FRMotorport, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
@@ -20,14 +23,17 @@ pros::Motor Shooter2 (Shooter2port, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTO
 pros::Controller master (CONTROLLER_MASTER);
 pros::Controller partner (CONTROLLER_PARTNER);
 
-bool CisForward = true;
+//------This veriable helps control the direction of the drive train.------
+bool isForward = true;
 
+//------These map the joisticks to be used later for turning motors.------
 int LeftControls = master.get_analog(ANALOG_LEFT_Y);
 int RightControls = master.get_analog(ANALOG_RIGHT_Y);
 int ArmControls = partner.get_analog(ANALOG_LEFT_Y);
 int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
-//------sets motor target, but does not wait for motor to reach target------
+
+//------sets drive trains target, but does not wait for them to reach their target.------
 void driveForDistance(double leftInches, double rightInches) {
   FLMotor.move_relative(leftInches, 140);
   BLMotor.move_relative(leftInches, 140);
@@ -37,18 +43,16 @@ void driveForDistance(double leftInches, double rightInches) {
 }
 
 
-//------Function for setting the drive trian breaks------
+//------Function for setting the drive trian breaks.------
 void brakeDriveTrain() {
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   BLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   BRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
-  //driveForDistance(0, 0);
 }
 
 
-//------Function for releasing the drive train breaks------
+//------Function for releasing the drive train breaks.------
 void unBrakeDriveTrain() {
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -57,34 +61,34 @@ void unBrakeDriveTrain() {
 }
 
 
-//------Function for seting the cap flipper side to be the front side------
+//------Function for seting the cap flipper side to be the front side.------
 void setBackwords() {
   FLMotor.set_reversed(true);
   FRMotor.set_reversed(false);
   BLMotor.set_reversed(true);
   BRMotor.set_reversed(false);
-  CisForward = false;
+  isForward = false;
 }
 
 
-//------Function for seting the ball shooter side to be the front side------
+//------Function for seting the ball shooter side to be the front side.------
 void setForwards() {
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
-  CisForward = true;
+  isForward = true;
 }
 
 
-//------Function for turning on the shooter------
+//------Function for turning on the shooter.------
 void shooterOn(int velocity = 0) {
   Shooter1.move_velocity(velocity);
   Shooter2.move_velocity(velocity);
 }
 
 
-//------Function for turning off the shooter------
+//------Function for turning off the shooter.------
 void shooterOff() {
   shooterOn(0);
 }
