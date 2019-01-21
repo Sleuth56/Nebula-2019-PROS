@@ -32,30 +32,30 @@ void opcontrol() {
 
     //------Shooter controls.------
     if (partner.get_digital(DIGITAL_R1)) {
-      shooterOn(200);
+      ShooterOn(200);
     }
     else {
-      shooterOff();
+      ShooterOff();
     }
 
 
     //------Drive train break controls.------
     if (master.get_digital_new_press(DIGITAL_UP)) {
       if (isBreaking == true) {
-        unBrakeDriveTrain();
+        UnBrakeDriveTrain();
       }
       else {
-        brakeDriveTrain();
+        BrakeDriveTrain();
       }
     }
 
 
     //------Drive train directional controls.------
     if (master.get_digital_new_press(DIGITAL_L1)) {
-      setBackwords();
+      SetBackwords();
     }
     if (master.get_digital_new_press(DIGITAL_R1)) {
-      setForwards();
+      SetForwards();
     }
 
 
@@ -110,12 +110,12 @@ void opcontrol() {
           if (isForward == true) {
             FLMotor.move(LeftControls);
             BLMotor.move(LeftControls);
-            FRMotor.move(RightControls);
-            BRMotor.move(RightControls);
+            FRMotor.move(-RightControls);
+            BRMotor.move(-RightControls);
           }
           else {
-            FLMotor.move(RightControls);
-            BLMotor.move(RightControls);
+            FLMotor.move(-RightControls);
+            BLMotor.move(-RightControls);
             FRMotor.move(LeftControls);
             BRMotor.move(LeftControls);
           }

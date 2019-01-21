@@ -35,26 +35,30 @@ extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
+bool AtDistanceDriveGoal(int threshold);
+
 //------sets drive trains target, but does not wait for them to reach their target.------
-void driveForDistance(double leftInches, double rightInches);
+void Drive(double leftInches, double rightInches);
+
+void Rotate(double turn);
 
 //------Function for setting the drive trian breaks.------
-void brakeDriveTrain();
+void BrakeDriveTrain();
 
 //------Function for releasing the drive train breaks.------
-void unBrakeDriveTrain();
+void UnBrakeDriveTrain();
 
 //------Function for seting the cap flipper side to be the front side.------
-void setBackwords();
+void SetBackwords();
 
 //------Function for seting the ball shooter side to be the front side.------
-void setForwards();
+void SetForwards();
 
 //------Function for turning on the shooter.------
-void shooterOn(int velocity = 0);
+void ShooterOn(int velocity = 200);
 
 //------Function for turning off the shooter.------
-void shooterOff();
+void ShooterOff();
 
 void LeftNear();
 
@@ -69,3 +73,5 @@ void RightFar();
 
 
 void SkillsAutonLeftNear();
+
+void LCDScriptExecute();
