@@ -170,12 +170,70 @@ void RedCap() {
 
 
 void BlueFlag() {
+  Intake.move(100);
+  Drive(3500, 3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
 
+  Drive(-3500,-3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Rotate(-770);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn();
+  Drive(3500,3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-1300,-2000);
+  pros::delay(1500);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  Drive(-1300, -1300);
+  pros::delay(1500);
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  ShooterOff();
 }
 
 
 void BlueCap() {
-
+  Intake.move(100);
+  Drive(3500, 3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-600, -600);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(-900);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-800, -800);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Arm.move_relative(500, 200);
+  pros::delay(600);
+  Intake.move(0);
 }
 
 
