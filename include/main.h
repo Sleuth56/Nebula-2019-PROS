@@ -36,6 +36,8 @@
 
 #include "api.h"
 
+#include "functions.h"
+
 /**
  * You should add more #includes here
  */
