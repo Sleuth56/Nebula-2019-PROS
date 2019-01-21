@@ -60,18 +60,18 @@ void ShooterOn(int velocity = 200);
 //------Function for turning off the shooter.------
 void ShooterOff();
 
-void LeftNear();
+void RedFlag();
 
 
-void LeftFar();
+void RedCap();
 
 
-void RightNear();
+void BlueFlag();
 
 
-void RightFar();
+void BlueCap();
 
 
-void SkillsAutonLeftNear();
+void SkillsAuton();
 
 void LCDScriptExecute();

@@ -32,17 +32,18 @@ bool AtDistanceDriveGoal(int threshold) {
 
 //------sets drive trains target, but does not wait for them to reach their target.------
 void Drive(double leftInches, double rightInches) {
-  FLMotor.move_relative(leftInches, 140);
-  FRMotor.move_relative(-rightInches, 140);
-  BLMotor.move_relative(leftInches, 140);
-  BRMotor.move_relative(-rightInches, 140);
+  FRMotor.move_relative(leftInches, 100);
+  BRMotor.move_relative(rightInches, -100);
+  pros::delay(25);
+  FLMotor.move_relative(rightInches, 100);
+  BLMotor.move_relative(leftInches, -100);
 }
 
 void Rotate(double turn) {
   FLMotor.move_relative(-turn , 50);
-  FRMotor.move_relative(-turn, 50);
+  FRMotor.move_relative(turn, 50);
   BLMotor.move_relative(-turn, 50);
-  BRMotor.move_relative(-turn, 50);
+  BRMotor.move_relative(turn, 50);
 }
 
 
@@ -102,33 +103,91 @@ void ShooterOff() {
 }
 
 
-void LeftNear() {
+void RedFLag() {
+  Intake.move(100);
+  Drive(3500, 3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-3500,-3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Rotate(770);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn();
+  Drive(3500,3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-1300,-2000);
+  pros::delay(1500);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  Drive(-1300, -1300);
+  pros::delay(1500);
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  ShooterOff();
 }
 
 
-void LeftFar() {
+void RedCap() {
+  Intake.move(100);
+  Drive(3500, 3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-600, -600);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(700);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-800, -800);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Arm.move_relative(350, 200);
 }
 
 
-void RightNear() {
+void BlueFlag() {
 
 }
 
 
-void RightFar() {
+void BlueCap() {
 
 }
 
 
-void SkillsAutonLeftNear() {
+void SkillsAuton() {
 
 }
 
 
 int selection = 0;
 
-const char *titles[] = {"Left Near", "Left Far", "Right Near", "Right Far","skillsAutonLeftNear"};
+const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
 
-void (*scripts[])() = {&LeftNear, &LeftFar, &RightNear, &RightFar,  &SkillsAutonLeftNear};
+void (*scripts[])() = {&RedFLag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 
 void LCDScriptExecute() { scripts[selection](); }

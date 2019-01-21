@@ -2,10 +2,6 @@
 
 
 void opcontrol() {
-  FLMotor.set_reversed(false);
-  FRMotor.set_reversed(true);
-  BLMotor.set_reversed(false);
-  BRMotor.set_reversed(true);
   //------tells the user that the opcontrol faze has started.------
 	pros::lcd::set_text(0, "opcontrol has started");
 
@@ -71,9 +67,9 @@ void opcontrol() {
 
     //------Sets the target position for the auto cap flip button------
     //650 sometimes double flipped
-    int flipTarget = 350;
+    int flipTarget = 620;
     //------Sets how fast the arm will flip the cap------
-    int flipingSpeed = 100;
+    int flipingSpeed = 200;
     //------If the L2 button on the master controller is pressed------
     //------move the arm to the fliping target and set the IsFlipping veriable to true------
     //------so the arm will lower after it reaches the target height.------
@@ -90,7 +86,7 @@ void opcontrol() {
     //------If it has it moves it back down and sets the IsFlipping veriable to false telling allowing the joistic to control the arm again.------
     if (IsFlipping == true && abs(int(Arm.get_position())) >= (flipTarget - 20)) {
       Arm.move_absolute(0, flipingSpeed);
-      pros::delay(flipingSpeed + 100);
+      pros::delay(flipingSpeed);
       IsFlipping = false;
     }
     //------If the auto cap flipping buttons arn't active maps the arm motor to the joistics.------
@@ -114,12 +110,12 @@ void opcontrol() {
           if (isForward == true) {
             FLMotor.move(LeftControls);
             BLMotor.move(LeftControls);
-            FRMotor.move(RightControls);
-            BRMotor.move(RightControls);
+            FRMotor.move(-RightControls);
+            BRMotor.move(-RightControls);
           }
           else {
-            FLMotor.move(RightControls);
-            BLMotor.move(RightControls);
+            FLMotor.move(-RightControls);
+            BLMotor.move(-RightControls);
             FRMotor.move(LeftControls);
             BRMotor.move(LeftControls);
           }
