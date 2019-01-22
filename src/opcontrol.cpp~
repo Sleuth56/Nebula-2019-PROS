@@ -94,16 +94,8 @@ void opcontrol() {
       IsFlipping = false;
     }
     //------If the auto cap flipping buttons arn't active maps the arm motor to the joistics.------
-    if (IsFlipping == false && IsOverHeigh == false) {
+    if (IsFlipping == false) {
       Arm.move(ArmControls);
-    }
-
-    if(abs(int(Arm.get_position() >= 1000 && partner.get_digital(DIGITAL_A) == false) {
-      IsOverHeigh = true;
-      Arm.move(-50);
-    }
-    else {
-      IsOverHeigh = false;
     }
 
 
