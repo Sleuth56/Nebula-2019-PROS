@@ -25,9 +25,9 @@ extern const char *titles[5];
 extern void (*scripts[5])();
 
 //------This veriable helps control the direction of the drive train.------
-extern bool isForward;
+extern bool IsForward;
 
-extern bool isBreaking;
+extern bool IsBreaking;
 
 //------These map the joisticks to be used later for turning motors.------
 extern int LeftControls;

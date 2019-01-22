@@ -12,9 +12,8 @@
  * from where it left off.
  */
 
-bool isForward = true;
-
-bool isBreaking = false;
+bool IsForward = true;
+bool IsBreaking = false;
 
 //------These map the joisticks to be used later for turning motors.------
 int LeftControls = master.get_analog(ANALOG_LEFT_Y);
@@ -49,7 +48,7 @@ void Rotate(double turn) {
 
 //------Function for setting the drive trian breaks.------
 void BrakeDriveTrain() {
-  isBreaking = true;
+  IsBreaking = true;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   BLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -64,7 +63,7 @@ void BrakeDriveTrain() {
 
 //------Function for releasing the drive train breaks.------
 void UnBrakeDriveTrain() {
-  isBreaking = false;
+  IsBreaking = false;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   BLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -78,7 +77,7 @@ void SetBackwords() {
   FRMotor.set_reversed(false);
   BLMotor.set_reversed(true);
   BRMotor.set_reversed(false);
-  isForward = false;
+  IsForward = false;
 }
 
 
@@ -88,7 +87,7 @@ void SetForwards() {
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
-  isForward = true;
+  IsForward = true;
 }
 
 
