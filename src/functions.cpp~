@@ -87,7 +87,7 @@ void ShooterOff() {
 
 //Function for the red flag side of the field
 void RedFLag() {
-  Intake.move(600);
+  Intake.move(100);
   Drive(3500, 3500);
   do {
     pros::delay(20);
@@ -98,8 +98,6 @@ void RedFLag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Intake.move(0);
-  pros::delay(300);
   Rotate(770);
   do {
     pros::delay(20);
@@ -114,16 +112,16 @@ void RedFLag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-880,-1700);
+  Drive(-1300,-2000);
   pros::delay(1500);
-  Intake.move(100);
-  pros::delay(500);
-  Intake.move(0);
 
-  Drive(-1400, -1300);
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  Drive(-1300, -1300);
   pros::delay(1500);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(600);
   Intake.move(0);
   ShooterOff();
 }
@@ -139,7 +137,7 @@ void RedCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(900);
+  Rotate(700);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -147,14 +145,12 @@ void RedCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Arm.move_relative(600, 227);
-  pros::delay(600);
-  Intake.move(0);
+  Arm.move_relative(350, 200);
 }
 
 //Function for the blue flag side of the field
 void BlueFlag() {
-  Intake.move(600);
+  Intake.move(100);
   Drive(3500, 3500);
   do {
     pros::delay(20);
@@ -165,8 +161,6 @@ void BlueFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Intake.move(0);
-  pros::delay(300);
   Rotate(-770);
   do {
     pros::delay(20);
@@ -181,16 +175,16 @@ void BlueFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-1700,-880);
+  Drive(-1300,-2000);
   pros::delay(1500);
-  Intake.move(100);
-  pros::delay(500);
-  Intake.move(0);
 
-  Drive(-1300, -1400);
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  Drive(-1300, -1300);
   pros::delay(1500);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(600);
   Intake.move(0);
   ShooterOff();
 }
@@ -214,7 +208,7 @@ void BlueCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Arm.move_relative(600, 227);
+  Arm.move_relative(500, 200);
   pros::delay(600);
   Intake.move(0);
 }
@@ -255,7 +249,7 @@ void SkillsAuton() {
   Drive(-1300, -1300);
   pros::delay(1500);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(600);
   Intake.move(0);
   ShooterOff();
 }

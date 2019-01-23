@@ -42,12 +42,6 @@ void on_right_button() {
 }
 
 void initialize() {
-  //Setting the right motors to be reversed
-  FLMotor.set_reversed(false);
-  FRMotor.set_reversed(true);
-  BLMotor.set_reversed(false);
-  BRMotor.set_reversed(true);
-
   printf("Init started\n");
   pros::lcd::initialize();
 

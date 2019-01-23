@@ -21,7 +21,7 @@ void opcontrol() {
       bool IsOverHeigh = false;
       int flipTarget = 350;
       int flipingSpeed = 100;
-      int ArmCeiling = 1000;
+      int ArmCeiling = 1250;
 
 
   while (true) {
@@ -30,11 +30,10 @@ void opcontrol() {
       pros::lcd::print(5, "%d, %d", int(pros::c::motor_get_temperature(Shooter1port)), int(pros::c::motor_get_temperature(Shooter2port)));
 
       //if the motors are starting to over heat rumble the controllers.
-      if (pros::c::motor_is_over_temp(Shooter1port) || pros::c::motor_is_over_temp(Shooter2port) && IsShooterHot == true) {
-        master.rumble("- - -");
-        master.rumble("");
+      if (pros::c::motor_is_over_temp(Shooter1port) || pros::c::motor_is_over_temp(Shooter2port) && IsShooterHot == false) {
         partner.rumble("- - -");
         partner.rumble("");
+        IsShooterHot = true;
       }
 
     //------Joistics------
@@ -83,9 +82,9 @@ void opcontrol() {
       if (master.get_digital(DIGITAL_R2)) {
         Intake.move(200);
       }
-      else if (partner.get_digital_new_press(DIGITAL_R2)) {
+      else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
         Intake.move(100);
-        pros::delay(600);
+        pros::delay(300);
         Intake.move(0);
       }
       else {
