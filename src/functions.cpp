@@ -1,35 +1,22 @@
 #include "main.h"
 
-/**
- * Runs the user autonomous code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the autonomous
- * mode. Alternatively, this function may be called in initialize or opcontrol
- * for non-competition testing purposes.
- *
- * If the robot is disabled or communications is lost, the autonomous task
- * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
- */
-
+//Veriables and funstions for auton selector
 bool IsForward = true;
 bool IsBreaking = false;
 
-//------These map the joisticks to be used later for turning motors.------
+//These map the joisticks to be used later for turning motors
 int LeftControls = master.get_analog(ANALOG_LEFT_Y);
 int RightControls = master.get_analog(ANALOG_RIGHT_Y);
 int ArmControls = partner.get_analog(ANALOG_LEFT_Y);
 int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
-
-// returns true/false as to wheter the drive wheels have
-// reached their position goal set by driveForDistance
+//Returns true/false as to wheter the drive wheels have
+//reached their position goal set by driveForDistance
 bool AtDistanceDriveGoal(int threshold) {
   return (abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold) &&(abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold);
 }
 
-
-//------sets drive trains target, but does not wait for them to reach their target.------
+//Sets drive trains target, but does not wait for them to reach their target
 void Drive(double leftInches, double rightInches) {
   FRMotor.move_relative(leftInches, 100);
   BRMotor.move_relative(rightInches, -100);
@@ -38,6 +25,7 @@ void Drive(double leftInches, double rightInches) {
   BLMotor.move_relative(leftInches, -100);
 }
 
+//Turns the robot to the target position
 void Rotate(double turn) {
   FLMotor.move_relative(-turn , 50);
   FRMotor.move_relative(turn, 50);
@@ -45,8 +33,7 @@ void Rotate(double turn) {
   BRMotor.move_relative(turn, 50);
 }
 
-
-//------Function for setting the drive trian breaks.------
+//Function for setting the drive trian breaks
 void BrakeDriveTrain() {
   IsBreaking = true;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -60,8 +47,7 @@ void BrakeDriveTrain() {
   BRMotor.move_relative(0,200);
 }
 
-
-//------Function for releasing the drive train breaks.------
+//Function for releasing the drive train breaks
 void UnBrakeDriveTrain() {
   IsBreaking = false;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -70,8 +56,7 @@ void UnBrakeDriveTrain() {
   BRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
-
-//------Function for seting the cap flipper side to be the front side.------
+//Function for seting the cap flipper side to be the front side
 void SetBackwords() {
   FLMotor.set_reversed(true);
   FRMotor.set_reversed(false);
@@ -80,8 +65,7 @@ void SetBackwords() {
   IsForward = false;
 }
 
-
-//------Function for seting the ball shooter side to be the front side.------
+//Function for seting the ball shooter side to be the front side
 void SetForwards() {
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
@@ -90,18 +74,18 @@ void SetForwards() {
   IsForward = true;
 }
 
-
-//------Function for turning on the shooter.------
+//Function for turning on the shooter
 void ShooterOn(int velocity) {
   Shooter1.move_velocity(velocity);
   Shooter2.move_velocity(velocity);
 }
 
+//Function for turning off the shooter
 void ShooterOff() {
   ShooterOn(0);
 }
 
-
+//Function for the red flag side of the field
 void RedFLag() {
   Intake.move(100);
   Drive(3500, 3500);
@@ -130,9 +114,6 @@ void RedFLag() {
 
   Drive(-1300,-2000);
   pros::delay(1500);
-  // do {
-  //   pros::delay(20);
-  // } while (!AtDistanceDriveGoal(5));
 
   Intake.move(100);
   pros::delay(600);
@@ -145,7 +126,7 @@ void RedFLag() {
   ShooterOff();
 }
 
-
+//Function for the red cap side of the field
 void RedCap() {
   Intake.move(100);
   Drive(3500, 3500);
@@ -167,7 +148,7 @@ void RedCap() {
   Arm.move_relative(350, 200);
 }
 
-
+//Function for the blue flag side of the field
 void BlueFlag() {
   Intake.move(100);
   Drive(3500, 3500);
@@ -196,9 +177,6 @@ void BlueFlag() {
 
   Drive(-1300,-2000);
   pros::delay(1500);
-  // do {
-  //   pros::delay(20);
-  // } while (!AtDistanceDriveGoal(5));
 
   Intake.move(100);
   pros::delay(600);
@@ -211,7 +189,7 @@ void BlueFlag() {
   ShooterOff();
 }
 
-
+//Function for the blue cap side of the field
 void BlueCap() {
   Intake.move(100);
   Drive(3500, 3500);
@@ -235,16 +213,49 @@ void BlueCap() {
   Intake.move(0);
 }
 
-
+//Function for skills auton
 void SkillsAuton() {
+  Intake.move(100);
+  Drive(3500, 3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
 
+  Drive(-3500,-3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Rotate(770);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn();
+  Drive(3500,3500);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-1300,-2000);
+  pros::delay(1500);
+
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  Drive(-1300, -1300);
+  pros::delay(1500);
+  Intake.move(100);
+  pros::delay(600);
+  Intake.move(0);
+  ShooterOff();
 }
 
-
+//Veriables and funstions for auton selector
 int selection = 0;
-
 const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
-
 void (*scripts[])() = {&RedFLag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
-
 void LCDScriptExecute() { scripts[selection](); }
