@@ -92,6 +92,16 @@ void opcontrol() {
         Intake.move(IntakeControls);
       }
 
+      //Rotate 90
+      if (master.get_digital_new_press(DIGITAL_LEFT)) {
+          Rotate(790);
+          pros::delay(1200);
+      }
+      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+        Rotate(-790);
+        pros::delay(1200);
+      }
+
     //------Partner Controller------
       //Shooter controls.
       if (partner.get_digital(DIGITAL_R1)) {
