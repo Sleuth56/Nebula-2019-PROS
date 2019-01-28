@@ -14,7 +14,6 @@ void opcontrol() {
     //------Tells the arm to hold it's position.------
     Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-
   //------Variables------
       bool IsShooterHot = false;
       bool IsFlipping = false;

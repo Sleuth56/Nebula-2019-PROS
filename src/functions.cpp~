@@ -85,11 +85,6 @@ void ShooterOff() {
   ShooterOn(0);
 }
 
-//
-void Arm() {
-  
-}
-
 //Function for the red flag side of the field
 void RedFLag() {
   Intake.move(600);

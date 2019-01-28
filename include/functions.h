@@ -1,12 +1,12 @@
 //Defining the motor ports
-#define FLMotorport 11
-#define FRMotorport 20
-#define BLMotorport 12
-#define BRMotorport 19
-#define Armport 13
-#define Intakeport 8
-#define Shooter1port 9
-#define Shooter2port 10
+#define FLMotorport 10
+#define FRMotorport 2
+#define BLMotorport 9
+#define BRMotorport 1
+#define Armport 8
+#define Intakeport 13
+#define Shooter1port 12
+#define Shooter2port 14
 
 //Defining the motors
 extern pros::Motor FLMotor;
