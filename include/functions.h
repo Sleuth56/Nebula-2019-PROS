@@ -21,8 +21,14 @@ extern pros::Controller master;
 extern pros::Controller partner;
 
 //This veriable helps control the direction of the drive train
-extern bool IsForward;
 extern bool IsBreaking;
+extern bool IsForward;
+extern bool IsShooterHot;
+extern bool IsFlipping;
+extern bool IsOverHeigh;
+extern int flipTarget;
+extern int flipingSpeed;
+extern int ArmCeiling;
 
 //These map the joisticks to be used later for turning motors
 extern int LeftControls;
@@ -57,6 +63,9 @@ void ShooterOn(int velocity = 200);
 
 //Function for turning off the shooter
 void ShooterOff();
+
+//
+void Arm_fn(void* param);
 
 //Function for the red flag side of the field
 void RedFlag();

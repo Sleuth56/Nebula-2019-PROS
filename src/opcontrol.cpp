@@ -23,6 +23,7 @@ void opcontrol() {
       int ArmCeiling = 1250;
 
 
+  pros::Task Arm (Arm_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
   while (true) {
     //------Monitoring code------
       //Prints the shooter temps to the brain screen.
@@ -58,15 +59,27 @@ void opcontrol() {
             }
       }
     //------Master Controller------
-      //Drive train break controls.
-      if (master.get_digital_new_press(DIGITAL_UP)) {
+
+    if (master.get_digital_new_press(DIGITAL_UP)) {
         if (IsBreaking == true) {
           UnBrakeDriveTrain();
         }
         else {
           BrakeDriveTrain();
         }
+    }
+
+    //Drive train break controls.
+    if (master.get_digital_new_press(DIGITAL_DOWN)) {
+      if (IsBreaking == true) {
+        UnBrakeDriveTrain();
+        Rotate(1580);
       }
+      else {
+        BrakeDriveTrain();
+        Rotate(1580);
+      }
+    }
 
 
       //Drive train directional controls.
@@ -110,43 +123,6 @@ void opcontrol() {
         ShooterOff();
       }
 
-      //Resets the arm's starting position for the auto cap flip button if the button is pressed.
-      if (partner.get_digital(DIGITAL_DOWN)) {
-        Arm.set_zero_position(0);
-      }
-
-      //If the L2 button on the master controller is pressed.
-      //move the arm to the fliping target and set the IsFlipping veriable to true.
-      //so the arm will lower after it reaches the target height.
-      if (master.get_digital(DIGITAL_L2)) {
-        Arm.move_absolute(flipTarget, flipingSpeed);
-        IsFlipping = true;
-      }
-      //Does the same thing as the other one except this the L1 button on the partner controller.
-      if (partner.get_digital(DIGITAL_L1)) {
-        Arm.move_absolute(flipTarget, flipingSpeed);
-        IsFlipping = true;
-      }
-      //Checks for if we pushed either of the buttons and if the arm has reached it's target.
-      //If it has it moves it back down and sets the IsFlipping veriable to false telling allowing the joistic to control the arm again.
-      if (IsFlipping == true && abs(int(Arm.get_position())) >= (flipTarget - 20)) {
-        Arm.move_absolute(0, flipingSpeed);
-        pros::delay(flipingSpeed + 100);
-        IsFlipping = false;
-      }
-      //If the auto cap flipping buttons arn't active maps the arm motor to the joistics.
-      if (IsFlipping == false && IsOverHeigh == false) {
-        Arm.move(ArmControls);
-      }
-
-      //doesn't let the arm to go over the 18 inches expantion limit unless a button is pressed on the partner controller.
-      if(abs(int(Arm.get_position() >= ArmCeiling && partner.get_digital(DIGITAL_A) == false))) {
-        IsOverHeigh = true;
-        Arm.move(-50);
-      }
-      else {
-        IsOverHeigh = false;
-      }
     //delay for background code execution.
     pros::delay(2);
   }
