@@ -36,68 +36,72 @@ extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
-//Function for Arm.cpp.
-void Arm_fn(void* param);
+//------Function for Arm.cpp.------
+  void Arm_fn(void* param);
 
-//Function for Intake.cpp.
-void Intake_fn(void* param);
 
-//Functions for Shooter.cpp.
-void Shooter_fn(void* param);
+//------Function for Intake.cpp.------
+  void Intake_fn(void* param);
 
-//Functions for DriveTrain.cpp.
-void DriveTrain_fn(void* param);
+  //Functions for Shooter.cpp.
+  void Shooter_fn(void* param);
 
-//Returns true/false as to wheter the drive wheels have
-//reached their position goal set by driveForDistance
-bool AtDistanceDriveGoal(int threshold);
+  //Function for turning on the shooter
+  void ShooterOn(int velocity = 200);
 
-//Sets drive trains target, but does not wait for them to reach their target
-void Drive(double leftInches, double rightInches, int speed);
+  //Function for turning off the shooter
+  void ShooterOff();
 
-//Turns the robot to the target position
-void Rotate(double turn, int speed);
+  //Function for shooting booth top flags.
+  void ShootTwice();
 
-//Function for setting the drive trian breaks
-void BrakeDriveTrain();
 
-//Function for releasing the drive train breaks
-void UnBrakeDriveTrain();
+//------Functions for DriveTrain.cpp.------
+  void DriveTrain_fn(void* param);
 
-//Function for seting the cap flipper side to be the front side
-void SetBackwords();
+  //Returns true/false as to wheter the drive wheels have
+  //reached their position goal set by driveForDistance
+  bool AtDistanceDriveGoal(int threshold);
 
-//Function for seting the ball shooter side to be the front side
-void SetForwards();
+  //Sets drive trains target, but does not wait for them to reach their target
+  void Drive(double leftInches, double rightInches, int speed);
 
-//Function for turning on the shooter
-void ShooterOn(int velocity = 200);
+  //Turns the robot to the target position
+  void Rotate(double turn, int speed);
 
-//Function for turning off the shooter
-void ShooterOff();
+  //Function for setting the drive trian breaks
+  void BrakeDriveTrain();
 
-//Function for shooting booth top flags.
-void ShootTwice();
+  //Function for releasing the drive train breaks
+  void UnBrakeDriveTrain();
 
-//Function for the red flag side of the field
-void RedFlag();
+  //Function for seting the cap flipper side to be the front side
+  void SetBackwords();
 
-//Function for the red cap side of the field
-void RedCap();
+  //Function for seting the ball shooter side to be the front side
+  void SetForwards();
 
-//Function for the blue flag side of the field
-void BlueFlag();
 
-//Function for the blue cap side of the field
-void BlueCap();
+//------Functions for autonomous.cpp.------
+  //Function for the red flag side of the field
+  void RedFlag();
 
-//Function for skills auton
-void SkillsAuton();
+  //Function for the red cap side of the field
+  void RedCap();
 
-//Function for starting the right auton program
-void LCDScriptExecute();
+  //Function for the blue flag side of the field
+  void BlueFlag();
 
-//Veriables and funstions for auton selector
-extern int selection;
-extern const char *titles[5];
-extern void (*scripts[5])();
+  //Function for the blue cap side of the field
+  void BlueCap();
+
+  //Function for skills auton
+  void SkillsAuton();
+
+  //Function for starting the right auton program
+  void LCDScriptExecute();
+
+  //Veriables and funstions for auton selector
+  extern int selection;
+  extern const char *titles[5];
+  extern void (*scripts[5])();
