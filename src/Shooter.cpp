@@ -3,6 +3,36 @@
 //Veriables for controlling the shooter.
 bool IsShooterHot = false;
 
+
+//Function for turning on the shooter
+void ShooterOn(int velocity) {
+  Shooter1.move_velocity(velocity);
+  Shooter2.move_velocity(velocity);
+}
+
+
+//Function for turning off the shooter
+void ShooterOff() {
+  ShooterOn(0);
+}
+
+
+void ShootTwice() {
+  ShooterOn(200);
+  pros::delay(600);
+  Intake.move(100);
+  pros::delay(300);
+  Intake.move(0);
+  
+  pros::delay(500);
+  
+  Intake.move(100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOff();
+}
+
+
 //thread for all arm controls.
 void Shooter_fn(void* param) {
   while (true) {

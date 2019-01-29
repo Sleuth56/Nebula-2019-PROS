@@ -1,7 +1,7 @@
 #include "main.h"
 
 void Intake_fn(void* param) {
-  IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
+  int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
   while (true) {
     //Intake button for the master controller.
