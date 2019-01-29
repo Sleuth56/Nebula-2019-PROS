@@ -12,11 +12,6 @@ pros::Motor Shooter2 (Shooter2port, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTO
 pros::Controller master (CONTROLLER_MASTER);
 pros::Controller partner (CONTROLLER_PARTNER);
 
-//------Variables------
-    bool IsBreaking = false;
-    bool IsForward = true;
-    bool IsShooterHot = false;
-
 //These map the joisticks to be used later for turning motors
 int LeftControls = master.get_analog(ANALOG_LEFT_Y);
 int RightControls = master.get_analog(ANALOG_RIGHT_Y);

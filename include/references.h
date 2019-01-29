@@ -36,8 +36,17 @@ extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
-//------Function for Arm.cpp------
+//Function for Arm.cpp.
 void Arm_fn(void* param);
+
+//Function for Intake.cpp.
+void Intake_fn(void* param);
+
+//Functions for Shooter.cpp.
+void Shooter_fn(void* param);
+
+//Functions for DriveTrain.cpp.
+void DriveTrain_fn(void* param);
 
 //Returns true/false as to wheter the drive wheels have
 //reached their position goal set by driveForDistance
@@ -66,6 +75,9 @@ void ShooterOn(int velocity = 200);
 
 //Function for turning off the shooter
 void ShooterOff();
+
+//Function for shooting booth top flags.
+void ShootTwice();
 
 //Function for the red flag side of the field
 void RedFlag();

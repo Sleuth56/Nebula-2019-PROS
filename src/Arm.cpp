@@ -1,13 +1,16 @@
 #include "main.h"
 
+//Veriables for tweaking the arm.
 bool IsFlipping = false;
 bool IsOverHeigh = false;
 int flipTarget = 350;
 int flipingSpeed = 100;
 int ArmCeiling = 1250;
 
-//
+//Thread for all arm controls.
 void Arm_fn(void* param) {
+  ArmControls = partner.get_analog(ANALOG_LEFT_Y);
+  //Tells the arm to hold it's position.
   Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   while (true) {
