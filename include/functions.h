@@ -36,15 +36,18 @@ extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
+//------Function for Arm.cpp------
+void Arm_fn(void* param);
+
 //Returns true/false as to wheter the drive wheels have
 //reached their position goal set by driveForDistance
 bool AtDistanceDriveGoal(int threshold);
 
 //Sets drive trains target, but does not wait for them to reach their target
-void Drive(double leftInches, double rightInches);
+void Drive(double leftInches, double rightInches, int speed);
 
 //Turns the robot to the target position
-void Rotate(double turn);
+void Rotate(double turn, int speed);
 
 //Function for setting the drive trian breaks
 void BrakeDriveTrain();
@@ -63,9 +66,6 @@ void ShooterOn(int velocity = 200);
 
 //Function for turning off the shooter
 void ShooterOff();
-
-//
-void Arm_fn(void* param);
 
 //Function for the red flag side of the field
 void RedFlag();

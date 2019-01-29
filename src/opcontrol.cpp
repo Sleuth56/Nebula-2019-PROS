@@ -73,11 +73,11 @@ void opcontrol() {
     if (master.get_digital_new_press(DIGITAL_DOWN)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
-        Rotate(1580);
+        Rotate(1580, 50);
       }
       else {
         BrakeDriveTrain();
-        Rotate(1580);
+        Rotate(1580, 50);
       }
     }
 
@@ -106,11 +106,11 @@ void opcontrol() {
 
       //Rotate 90
       if (master.get_digital_new_press(DIGITAL_LEFT)) {
-          Rotate(790);
+          Rotate(790, 50);
           pros::delay(1200);
       }
       else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-        Rotate(-790);
+        Rotate(-790, 50);
         pros::delay(1200);
       }
 
@@ -122,7 +122,22 @@ void opcontrol() {
       else {
         ShooterOff();
       }
-
+      //Shoot booth top flags.
+      if (partner.get_digital_new_press(DIGITAL_R2)) {
+        ShooterOn(200);
+        pros::delay(600);
+        Intake.move(100);
+        pros::delay(300);
+        Intake.move(0);
+        
+        pros::delay(500);
+        
+        Intake.move(100);
+        pros::delay(300);
+        Intake.move(0);
+        ShooterOff();
+      }
+        
     //delay for background code execution.
     pros::delay(2);
   }
