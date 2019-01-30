@@ -19,15 +19,15 @@ void ShooterOff() {
 
 void ShootTwice() {
   ShooterOn(200);
+  pros::delay(1000);
+  Intake.move(100);
   pros::delay(600);
-  Intake.move(100);
-  pros::delay(300);
   Intake.move(0);
-  
+
   pros::delay(500);
-  
+
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(600);
   Intake.move(0);
   ShooterOff();
 }
@@ -41,8 +41,7 @@ void Shooter_fn(void* param) {
 
     //if the motors are starting to over heat rumble the controllers.
     if (pros::c::motor_is_over_temp(Shooter1port) || pros::c::motor_is_over_temp(Shooter2port) && IsShooterHot == false) {
-      partner.rumble("- - -");
-      partner.rumble("");
+      //partner.rumble("- - -");
       IsShooterHot = true;
     }
 

@@ -14,6 +14,7 @@ void Arm_fn(void* param) {
   Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   while (true) {
+    ArmControls = partner.get_analog(ANALOG_LEFT_Y);
     //Resets the arm's starting position for the auto cap flip button if the button is pressed.
     if (partner.get_digital(DIGITAL_DOWN)) {
       Arm.set_zero_position(0);

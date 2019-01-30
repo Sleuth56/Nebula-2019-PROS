@@ -145,19 +145,19 @@ void BlueCap() {
 //Function for skills auton
 void SkillsAuton() {
   Intake.move(600);
-  Drive(3500, 3500, 50);
+  Drive(3500, 3500, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-3600,-3600, 50);
+  Drive(-3400,-3400, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   Intake.move(0);
   pros::delay(300);
-  Rotate(750, 30);
+  Rotate(730, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -171,13 +171,19 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-900,-1700, 50);
-  pros::delay(800);
+  Drive(-1200,-1200, 50);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(-90, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
 
-  Rotate(100, 30);
+  Rotate(120, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -185,7 +191,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(2400);
+  pros::delay(800);
   Intake.move(100);
   pros::delay(300);
   Intake.move(0);
@@ -193,23 +199,23 @@ void SkillsAuton() {
   pros::delay(400);
 
   //Turn strait and backup to allign with the platform.
-  Rotate(20, 30);
+  Rotate(150, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-1600, -1600, 50);
+  Drive(-2600, -2600, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   //Rotate to face the platform.
-  Rotate(790, 50); //if the rotate command doesn't work past this after it. pros::delay(1200);
+  Rotate(-800, 50); //if the rotate command doesn't work past this after it. pros::delay(1200);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   //Drive Up to the center platform.
-  Drive(700, 700, 70);
+  Drive(5000, 5000, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));

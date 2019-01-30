@@ -4,6 +4,8 @@ void Intake_fn(void* param) {
   int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
   while (true) {
+    IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
+
     //Intake button for the master controller.
     if (master.get_digital(DIGITAL_R2)) {
       Intake.move(200);
