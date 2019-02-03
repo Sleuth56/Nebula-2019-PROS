@@ -49,6 +49,9 @@ void Shooter_fn(void* param) {
     if (partner.get_digital(DIGITAL_R1)) {
       ShooterOn(200);
     }
+    else if (partner.get_digital(DIGITAL_Y)) {
+      ShooterOn(-50);
+    }
     else {
       ShooterOff();
     }
