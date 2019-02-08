@@ -16,6 +16,10 @@ void Intake_fn(void* param) {
       pros::delay(260);
       Intake.move(0);
     }
+    //Shoot booth top flags.
+    else if (partner.get_digital_new_press(DIGITAL_R2)) {
+      //ShootTwice();
+    }
     else {
       //Makes the motor move if the joistic moves and the button isn't being pressed.
       Intake.move(IntakeControls);
