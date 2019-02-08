@@ -25,11 +25,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/Intake.cpp.o",
-            "src/Intake.cpp"
+            "bin/Autons.cpp.o",
+            "src/Autons.cpp"
         ],
         "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
-        "file": "src/Intake.cpp"
+        "file": "src/Autons.cpp"
     },
     {
         "arguments": [
@@ -89,38 +89,6 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/motors.cpp.o",
-            "src/motors.cpp"
-        ],
-        "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
-        "file": "src/motors.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
-            "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Os",
-            "-funwind-tables",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "--std=gnu++17",
-            "-o",
             "bin/initialize.cpp.o",
             "src/initialize.cpp"
         ],
@@ -153,43 +121,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
+            "bin/motors.cpp.o",
+            "src/motors.cpp"
         ],
         "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
-        "file": "src/opcontrol.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
-            "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Os",
-            "-funwind-tables",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "--std=gnu++17",
-            "-o",
-            "bin/Autons.cpp.o",
-            "src/Autons.cpp"
-        ],
-        "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
-        "file": "src/Autons.cpp"
+        "file": "src/motors.cpp"
     },
     {
         "arguments": [
@@ -281,6 +217,38 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
+            "bin/Shooter.cpp.o",
+            "src/Shooter.cpp"
+        ],
+        "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
+        "file": "src/Shooter.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
             "bin/Arm.cpp.o",
             "src/Arm.cpp"
         ],
@@ -313,10 +281,42 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/Shooter.cpp.o",
-            "src/Shooter.cpp"
+            "bin/Intake.cpp.o",
+            "src/Intake.cpp"
         ],
         "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
-        "file": "src/Shooter.cpp"
+        "file": "src/Intake.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
+            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
+            "bin/opcontrol.cpp.o",
+            "src/opcontrol.cpp"
+        ],
+        "directory": "/home/lerker100/Code/Vex/Nebula-2019-PROS",
+        "file": "src/opcontrol.cpp"
     }
 ]

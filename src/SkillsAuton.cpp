@@ -25,14 +25,14 @@ void SkillsAuton() {
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
-  ShooterOn();
-  Drive(3500, 3500, 60);
+  ShooterOn(170);
+  Drive(3500, 3500, 80);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   //Shoot top flag
-  pros::delay(1000);
+  pros::delay(1500);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
@@ -48,9 +48,10 @@ void SkillsAuton() {
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
+  Intake.move(60);
 
   //Drive back turn and flip the cap
-  Drive(-500, -500, 50);
+  Drive(-500, -500, 70);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -58,7 +59,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-500, -500, 50);
+  Drive(-500, -500, 70);
   pros::delay(500);
   Arm.move(100);
   pros::delay(500);
@@ -79,11 +80,11 @@ void SkillsAuton() {
   } while (!AtDistanceDriveGoal(5));
 
   //Drive forwards and hit the bottom flag
-  Drive(2000, 2000, 50);
+  Drive(2000, 2000, 60);
   pros::delay(2700);
 
   //backup, turn, and go forward
-  Drive(-3800, -3800, 50);
+  Drive(-3600, -3600, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -91,7 +92,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-1500, -1500, 50);
+  Drive(-1800, -1800, 80);
   pros::delay(1000);
   Intake.move(100);
   Drive(3700, 3700, 60);
@@ -108,14 +109,14 @@ void SkillsAuton() {
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
-  ShooterOn();
+  ShooterOn(100);
 
   //Turn to face the flag, wait for shooter to spin up and shoot the top flag
   Rotate(640, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(6000);
+  pros::delay(3500);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
@@ -170,7 +171,7 @@ void OldSkillsAuton() {
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
-  ShooterOn();
+  ShooterOn(170);
   Drive(3300,3300, 50);
   do {
     pros::delay(20);
