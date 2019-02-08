@@ -18,17 +18,19 @@ void ShooterOff() {
 
 
 void ShootTwice() {
-  ShooterOn(200);
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn();
+  pros::delay(2000);
+  Intake.move(100);
+  pros::delay(270);
+  Intake.move(0);
   pros::delay(1000);
   Intake.move(100);
-  pros::delay(600);
+  pros::delay(270);
   Intake.move(0);
-
-  pros::delay(500);
-
-  Intake.move(100);
-  pros::delay(600);
-  Intake.move(0);
+  pros::delay(400);
   ShooterOff();
 }
 

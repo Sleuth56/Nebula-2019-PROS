@@ -22,17 +22,23 @@ void Arm_fn(void* param) {
 
     if (partner.get_digital(DIGITAL_L1)) {
       Arm.move(100);
-      pros::delay(300);
+      //was 300
+      pros::delay(270);
       Arm.move(-100);
-      pros::delay(300);
+      //was 300
+      pros::delay(290);
       Arm.move(0);
+      Arm.set_zero_position(0);
     }
     else if (master.get_digital(DIGITAL_L2)) {
       Arm.move(100);
-      pros::delay(300);
+      //was 300
+      pros::delay(270);
       Arm.move(-100);
-      pros::delay(300);
+      //was 300
+      pros::delay(290);
       Arm.move(0);
+      Arm.set_zero_position(0);
     }
     else {
       Arm.move(ArmControls);
