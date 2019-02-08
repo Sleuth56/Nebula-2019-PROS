@@ -18,23 +18,20 @@ void ShooterOff() {
 
 
 void ShootTwice() {
-  Intake.move_relative(1000, 50);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  // pros::delay(300);
-  // Intake.move(0);
-  // ShooterOn();
-  // pros::delay(2000);
-  // Intake.move(100);
-  // pros::delay(270);
-  // Intake.move(0);
-  // pros::delay(1000);
-  // Intake.move(100);
-  // pros::delay(270);
-  // Intake.move(0);
-  // pros::delay(400);
-  // ShooterOff();
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn();
+  pros::delay(2000);
+  Intake.move(100);
+  pros::delay(270);
+  Intake.move(0);
+  pros::delay(1000);
+  Intake.move(100);
+  pros::delay(270);
+  Intake.move(0);
+  pros::delay(400);
+  ShooterOff();
 }
 
 
@@ -59,6 +56,10 @@ void Shooter_fn(void* param) {
     }
     else {
       ShooterOff();
+    }
+    //Shoot booth top flags.
+    if (partner.get_digital_new_press(DIGITAL_R2)) {
+      ShootTwice();
     }
   }
 }
