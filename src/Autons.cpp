@@ -15,7 +15,11 @@ void RedFlag() {
 
   Intake.move(0);
   pros::delay(300);
-  Rotate(750, 50);
+  Drive(200, 200, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(760, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -24,7 +28,7 @@ void RedFlag() {
   pros::delay(300);
   Intake.move(0);
   ShooterOn();
-  Drive(3300,3300, 100);
+  Drive(3400,3400, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -39,7 +43,7 @@ void RedFlag() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-1400, -1600, 100);
+  Drive(-1300, -1600, 100);
   pros::delay(2400);
   Intake.move(100);
   pros::delay(300);
@@ -90,7 +94,7 @@ void BlueFlag() {
 
   Intake.move(0);
   pros::delay(300);
-  Rotate(-770, 50);
+  Rotate(-760, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -99,21 +103,21 @@ void BlueFlag() {
   pros::delay(300);
   Intake.move(0);
   ShooterOn();
-  Drive(3500,3500, 100);
+  Drive(3300,3300, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-1700,-900, 100);
+  Drive(-1900,-1050, 100);
   pros::delay(1500);
   Intake.move(100);
   pros::delay(500);
   Intake.move(0);
 
-  Drive(-1400, -1500, 100);
+  Drive(-1300, -1400, 100);
   pros::delay(2400);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(370);
   Intake.move(0);
   ShooterOff();
 }
@@ -143,7 +147,7 @@ void BlueCap() {
 }
 
 //Veriables and funstions for auton selector
-int selection = 4;
+int selection = 0;
 const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }

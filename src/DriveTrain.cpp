@@ -79,8 +79,8 @@ void SetForwards() {
 //Thread for all drive train controls.
 void DriveTrain_fn(void* param) {
   int LeftControls = master.get_analog(ANALOG_LEFT_Y);
-  int RightControls = master.get_analog(ANALOG_RIGHT_Y);  
-  
+  int RightControls = master.get_analog(ANALOG_RIGHT_Y);
+
 
   //Setting the right motors to be reversed
   FLMotor.set_reversed(false);
