@@ -10,7 +10,7 @@ void Intake_fn(void* param) {
     if (master.get_digital(DIGITAL_R2)) {
       Intake.move(200);
     }
-    else if (partner.get_digital(DIGITAL_B)) {
+    else if (master.get_digital(DIGITAL_B)) {
       Intake.move(-200);
     }
     else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
