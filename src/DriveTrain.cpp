@@ -138,14 +138,27 @@ void DriveTrain_fn(void* param) {
       SetForwards();
     }
 
-    //Rotate 90
-    if (master.get_digital_new_press(DIGITAL_LEFT)) {
+    if (IsForward == true) {
+      //Rotate 90
+      if (master.get_digital_new_press(DIGITAL_LEFT)) {
+          Rotate(790, 50);
+          pros::delay(1200);
+      }
+      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+        Rotate(-790, 50);
+        pros::delay(1200);
+      }
+    }
+    else {
+      //Rotate 90
+      if (master.get_digital_new_press(DIGITAL_LEFT)) {
+          Rotate(-790, 50);
+          pros::delay(1200);
+      }
+      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
         Rotate(790, 50);
         pros::delay(1200);
-    }
-    else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-      Rotate(-790, 50);
-      pros::delay(1200);
+      }
     }
   }
 }
