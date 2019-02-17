@@ -9,7 +9,7 @@ void SkillsAuton() {
   } while (!AtDistanceDriveGoal(5));
   Drive(-3600, -3600, 60);
   pros::delay(4500);
-  Drive(300, 300, 50);
+  Drive(520, 520, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -34,7 +34,7 @@ void SkillsAuton() {
   //Shoot top flag
   pros::delay(1500);
   Intake.move(100);
-  pros::delay(600);
+  pros::delay(450);
   Intake.move(0);
   pros::delay(300);
 
@@ -123,7 +123,7 @@ void SkillsAuton() {
   ShooterOff();
 
   //Turn, drive up on platform, turn and drive onto center platform
-  Rotate(1700, 30);
+  Rotate(1800, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -132,7 +132,7 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   BrakeDriveTrain();
-  pros::delay(700);
+  pros::delay(500);
   UnBrakeDriveTrain();
   Rotate(740, 50);
   do {
