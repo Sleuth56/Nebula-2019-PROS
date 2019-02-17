@@ -7,6 +7,7 @@
 #define Intakeport 13
 #define Shooter1port 12
 #define Shooter2port 14
+#define GYRO_PORT 1
 
 //Defining the motors
 extern pros::Motor FLMotor;
@@ -19,6 +20,7 @@ extern pros::Motor Shooter1;
 extern pros::Motor Shooter2;
 extern pros::Controller master;
 extern pros::Controller partner;
+extern pros::ADIGyro gyro;
 
 //This veriable helps control the direction of the drive train
 extern bool IsBreaking;
@@ -80,6 +82,9 @@ extern int IntakeControls;
 
   //Function for seting the ball shooter side to be the front side
   void SetForwards();
+  
+  //Function for getting the gyros position
+  int GyroPos();
 
 
 //------Functions for autonomous.cpp.------

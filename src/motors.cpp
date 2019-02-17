@@ -11,3 +11,4 @@ pros::Motor Shooter1 (Shooter1port, pros::E_MOTOR_GEARSET_18, pros::E_MOTOR_ENCO
 pros::Motor Shooter2 (Shooter2port, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Controller master (CONTROLLER_MASTER);
 pros::Controller partner (CONTROLLER_PARTNER);
+pros::ADIGyro gyro (GYRO_PORT);

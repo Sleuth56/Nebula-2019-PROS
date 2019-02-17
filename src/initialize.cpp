@@ -36,7 +36,6 @@ void initialize() {
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
 
-  printf("Init started\n");
   pros::lcd::initialize();
 
   // Sets a callback function for the buttons
