@@ -9,14 +9,14 @@ void SkillsAuton() {
   } while (!AtDistanceDriveGoal(5));
   Drive(-3600, -3600, 60);
   pros::delay(4500);
-  Drive(300, 300, 50);
+  Drive(520, 520, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   //Intake off and Turn 90
   Intake.move(0);
-  Rotate(740, 40);
+  Rotate(760, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -26,7 +26,7 @@ void SkillsAuton() {
   pros::delay(300);
   Intake.move(0);
   ShooterOn(170);
-  Drive(3500, 3500, 80);
+  Drive(3800, 3800, 80);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -34,12 +34,12 @@ void SkillsAuton() {
   //Shoot top flag
   pros::delay(1500);
   Intake.move(100);
-  pros::delay(600);
+  pros::delay(450);
   Intake.move(0);
   pros::delay(300);
 
   //Drive Forwards, shoot middle flag, and turn off the shooter
-  Drive(2000, 2000, 60);
+  Drive(1700, 1700, 60);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -55,7 +55,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(750, 40);
+  Rotate(770, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -88,7 +88,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-770, 50);
+  Rotate(-790, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -109,7 +109,7 @@ void SkillsAuton() {
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
-  ShooterOn(100);
+  ShooterOn(90);
 
   //Turn to face the flag, wait for shooter to spin up and shoot the top flag
   Rotate(640, 30);
@@ -123,7 +123,7 @@ void SkillsAuton() {
   ShooterOff();
 
   //Turn, drive up on platform, turn and drive onto center platform
-  Rotate(1700, 30);
+  Rotate(1800, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -132,7 +132,7 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   BrakeDriveTrain();
-  pros::delay(700);
+  pros::delay(500);
   UnBrakeDriveTrain();
   Rotate(740, 50);
   do {

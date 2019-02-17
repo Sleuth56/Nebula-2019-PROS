@@ -16,7 +16,7 @@ bool AtDistanceDriveGoal(int threshold) {
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
   BRMotor.move_relative(rightInches, -speed);
-  pros::delay(25);
+  pros::delay(10);
   FLMotor.move_relative(rightInches, speed);
   BLMotor.move_relative(leftInches, -speed);
 }
@@ -138,14 +138,27 @@ void DriveTrain_fn(void* param) {
       SetForwards();
     }
 
-    //Rotate 90
-    if (master.get_digital_new_press(DIGITAL_LEFT)) {
+    if (IsForward == true) {
+      //Rotate 90
+      if (master.get_digital_new_press(DIGITAL_LEFT)) {
+          Rotate(790, 50);
+          pros::delay(1200);
+      }
+      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+        Rotate(-790, 50);
+        pros::delay(1200);
+      }
+    }
+    else {
+      //Rotate 90
+      if (master.get_digital_new_press(DIGITAL_LEFT)) {
+          Rotate(-790, 50);
+          pros::delay(1200);
+      }
+      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
         Rotate(790, 50);
         pros::delay(1200);
-    }
-    else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-      Rotate(-790, 50);
-      pros::delay(1200);
+      }
     }
   }
 }

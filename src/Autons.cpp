@@ -19,7 +19,7 @@ void RedFlag() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(760, 50);
+  Rotate(750, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -33,20 +33,20 @@ void RedFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-900,-1700, 100);
+  Drive(-1100,-1900, 100);
   pros::delay(1600);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
 
-  Rotate(100, 50);
+  Rotate(80, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-1300, -1600, 100);
+  Drive(-1200, -1300, 100);
   pros::delay(2400);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(600);
   Intake.move(0);
   ShooterOff();
 }
@@ -87,14 +87,19 @@ void BlueFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-3500,-3500, 100);
+  Drive(-3600,-3600, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(200, 200, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   Intake.move(0);
   pros::delay(300);
-  Rotate(-760, 50);
+  Rotate(-800, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -103,18 +108,18 @@ void BlueFlag() {
   pros::delay(300);
   Intake.move(0);
   ShooterOn();
-  Drive(3300,3300, 100);
+  Drive(3600,3600, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Drive(-1900,-1050, 100);
+  Drive(-2000,-1350, 100);
   pros::delay(1500);
   Intake.move(100);
   pros::delay(500);
   Intake.move(0);
 
-  Drive(-1300, -1400, 100);
+  Drive(-1400, -1400, 100);
   pros::delay(2400);
   Intake.move(100);
   pros::delay(370);
