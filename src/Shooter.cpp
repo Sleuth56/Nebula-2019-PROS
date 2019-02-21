@@ -52,7 +52,7 @@ void Shooter_fn(void* param) {
 
     //buttons for the shooter.
     if (partner.get_digital(DIGITAL_R1)) {
-      ShooterOn(130);
+      ShooterOn(160);
     }
     else if (partner.get_digital(DIGITAL_Y)) {
       ShooterOn(-10);

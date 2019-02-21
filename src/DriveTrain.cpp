@@ -24,10 +24,10 @@ void Drive(double leftInches, double rightInches, int speed) {
 
 //Turns the robot to the target position
 void Rotate(double turn, int speed) {
-  FLMotor.move_relative(-turn , speed);
-  FRMotor.move_relative(turn, speed);
-  BLMotor.move_relative(-turn, speed);
-  BRMotor.move_relative(turn, speed);
+  FLMotor.move_relative(turn , speed);
+  FRMotor.move_relative(-turn, speed);
+  BLMotor.move_relative(turn, speed);
+  BRMotor.move_relative(-turn, speed);
 }
 
 
