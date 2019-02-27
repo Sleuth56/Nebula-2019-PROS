@@ -209,7 +209,7 @@ void BlueCap() {
 }
 
 //Veriables and funstions for auton selector
-int selection = 0;
+int selection = 4;
 const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }

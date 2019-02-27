@@ -3,12 +3,20 @@
 void SkillsAuton() {
   //Intake on and Drive Out
   Intake.move(100);
-  Drive(3500, 3500, 60);
+  Drive(3900, 3900, 110);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-3600, -3600, 60);
-  pros::delay(4500);
+  Drive(-500, -500, 20);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(500);
+  Drive(-3360, -3360, 60);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
   Drive(520, 520, 50);
   do {
     pros::delay(20);
@@ -16,7 +24,7 @@ void SkillsAuton() {
 
   //Intake off and Turn 90
   Intake.move(0);
-  Rotate(760, 40);
+  Rotate(-760, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -48,14 +56,14 @@ void SkillsAuton() {
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
-  Intake.move(60);
+  Intake.move(100);
 
   //Drive back turn and flip the cap
   Drive(-500, -500, 70);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(770, 40);
+  Rotate(-770, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -74,7 +82,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-750, 40);
+  Rotate(750, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -88,14 +96,14 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-790, 50);
+  Rotate(800, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   Drive(-1800, -1800, 80);
   pros::delay(1000);
   Intake.move(100);
-  Drive(3700, 3700, 60);
+  Drive(3700, 3700, 90);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -105,25 +113,25 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(700);
+  pros::delay(600);
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
-  ShooterOn(90);
+  ShooterOn(150);
 
   //Turn to face the flag, wait for shooter to spin up and shoot the top flag
-  Rotate(640, 30);
+  Rotate(-620, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(3500);
+  pros::delay(3000);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
 
   //Turn, drive up on platform, turn and drive onto center platform
-  Rotate(1800, 30);
+  Rotate(-1800, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -134,7 +142,7 @@ void SkillsAuton() {
   BrakeDriveTrain();
   pros::delay(500);
   UnBrakeDriveTrain();
-  Rotate(740, 50);
+  Rotate(-740, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
