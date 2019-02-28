@@ -80,30 +80,84 @@ void RedFlag() {
 
 //Function for the red cap side of the field
 void RedCap() {
-  Intake.move(50);
-  Drive(3500, 3500, 100);
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn(160);
+  Drive(200, 200, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-
-  Drive(-600, -600, 100);
+  Rotate(-530, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-
-  Rotate(900, 50);
+  Drive(1000, 1000, 80);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-
-  Drive(-800, -800, 100);
-  do {
+  // pros::delay(500);
+  int a = 0;
+  while (Shooter1.get_actual_velocity() < 100) {
+    if (a > 150) {
+      break;
+    }
+    a = a + 1;
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-  Arm.move_relative(600, 227);
+  }
+  Intake.move(100);
   pros::delay(600);
   Intake.move(0);
+  ShooterOff();
+  Rotate(-260, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-2800, -2800, 80);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(500);
+  Drive(200, 200, 40);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(-820, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-2600, -2600, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(200);
+  Arm.move(100);
+  pros::delay(500);
+  Arm.move(-100);
+  pros::delay(500);
+  Arm.move(0);
+
+  Intake.move(100);
+  FLMotor.move(100);
+  FRMotor.move(10);
+  BLMotor.move(100);
+  BRMotor.move(10);
+  pros::delay(1500);
+
+  FLMotor.move(100);
+  FRMotor.move(100);
+  BLMotor.move(100);
+  BRMotor.move(100);
+  pros::delay(600);
+
+  FLMotor.move(-60);
+  FRMotor.move(-60);
+  BLMotor.move(-60);
+  BRMotor.move(-60);
+  pros::delay(1000);
+  Intake.move(0);
+  Drive(0, 0, 0);
 }
 
 //Function for the blue flag side of the field
@@ -186,26 +240,81 @@ void BlueFlag() {
 
 //Function for the blue cap side of the field
 void BlueCap() {
-  Intake.move(50);
-  Drive(3500, 3500, 100);
+  Intake.move(-100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOn(160);
+  Drive(200, 200, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-600, -600, 100);
+  Rotate(560, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-900, 50);
+  Drive(1000, 1000, 80);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Drive(-840, -840, 100);
-  do {
+  // pros::delay(500);
+  int a = 0;
+  while (Shooter1.get_actual_velocity() < 100) {
+    if (a > 150) {
+      break;
+    }
+    a = a + 1;
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  Arm.move_relative(600, 227);
+  }
+  Intake.move(100);
   pros::delay(600);
   Intake.move(0);
+  ShooterOff();
+  Rotate(260, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-2700, -2700, 80);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(500);
+  Drive(200, 200, 40);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Rotate(800, 30);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-2600, -2600, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(200);
+  Arm.move(100);
+  pros::delay(500);
+  Arm.move(-100);
+  pros::delay(500);
+  Arm.move(0);
+
+  Intake.move(100);
+  FLMotor.move(10);
+  FRMotor.move(100);
+  BLMotor.move(10);
+  BRMotor.move(100);
+  pros::delay(1600);
+
+  Drive(1000, 1000, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-1000, -1000, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Intake.move(0);
+  Drive(0, 0, 0);
 }
 
 //Veriables and funstions for auton selector
