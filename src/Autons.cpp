@@ -1,6 +1,6 @@
 #include "main.h"
 
-//Function for the red flag side of the field
+//Auton for the red flag side of the field.
 void RedFlag() {
   Intake.move(600);
   Drive(3500, 3500, 100);
@@ -78,7 +78,7 @@ void RedFlag() {
   BRMotor.move(0);
 }
 
-//Function for the red cap side of the field
+//Auton for the red cap side of the field.
 void RedCap() {
   Intake.move(-100);
   pros::delay(300);
@@ -160,7 +160,7 @@ void RedCap() {
   Drive(0, 0, 0);
 }
 
-//Function for the blue flag side of the field
+//Auton for the blue flag side of the field.
 void BlueFlag() {
   Intake.move(600);
   Drive(3500, 3500, 100);
@@ -238,7 +238,7 @@ void BlueFlag() {
   BRMotor.move(0);
 }
 
-//Function for the blue cap side of the field
+//Auton for the blue cap side of the field.
 void BlueCap() {
   Intake.move(-100);
   pros::delay(300);
@@ -317,7 +317,7 @@ void BlueCap() {
   Drive(0, 0, 0);
 }
 
-//Veriables and funstions for auton selector
+//Veriables and functions for the auton selector.
 int selection = 4;
 const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};

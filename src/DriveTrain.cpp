@@ -5,14 +5,15 @@ bool IsBreaking = false;
 bool IsForward = true;
 
 
-//Returns true/false as to wheter the drive wheels have
-//reached their position goal set by driveForDistance
+//Returns true or false as to whether the drive wheels have
+//reached their position goal set by Drive.
+//Used making the program wait for the drive to finish.
 bool AtDistanceDriveGoal(int threshold) {
   return (abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold) &&(abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold);
 }
 
 
-//Sets drive trains target, but does not wait for them to reach their target
+//Sets drive trains target, but does not wait for them to reach their target.
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
   BRMotor.move_relative(rightInches, -speed);
@@ -22,7 +23,7 @@ void Drive(double leftInches, double rightInches, int speed) {
 }
 
 
-//Turns the robot to the target position
+//Turns the robot to the target position.
 void Rotate(double turn, int speed) {
   FLMotor.move_relative(turn , speed);
   FRMotor.move_relative(-turn, speed);
@@ -31,7 +32,7 @@ void Rotate(double turn, int speed) {
 }
 
 
-//Function for setting the drive trian breaks
+//Function for setting the drive trian breaks.
 void BrakeDriveTrain() {
   IsBreaking = true;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -46,7 +47,7 @@ void BrakeDriveTrain() {
 }
 
 
-//Function for releasing the drive train breaks
+//Function for releasing the drive train breaks.
 void UnBrakeDriveTrain() {
   IsBreaking = false;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -56,7 +57,7 @@ void UnBrakeDriveTrain() {
 }
 
 
-//Function for seting the cap flipper side to be the front side
+//Function for seting the cap flipper side to be the front side.
 void SetBackwords() {
   FLMotor.set_reversed(true);
   FRMotor.set_reversed(false);
@@ -66,7 +67,7 @@ void SetBackwords() {
 }
 
 
-//Function for seting the ball shooter side to be the front side
+//Function for seting the ball shooter side to be the front side.
 void SetForwards() {
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
@@ -82,7 +83,7 @@ void DriveTrain_fn(void* param) {
   int RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
 
-  //Setting the right motors to be reversed
+  //Setting the revering state of the motors.
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
@@ -93,7 +94,7 @@ void DriveTrain_fn(void* param) {
     LeftControls = master.get_analog(ANALOG_LEFT_Y);
     RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
-    //Switches the motor sides if the drive train is reversed.
+    //Controls how the motors move.
     if (IsBreaking != true) {
       if (IsForward == true) {
           FLMotor.move(LeftControls);
@@ -109,6 +110,7 @@ void DriveTrain_fn(void* param) {
         }
     }
 
+    //Drive train lock and unlock button.
     if (master.get_digital_new_press(DIGITAL_UP)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
@@ -118,7 +120,7 @@ void DriveTrain_fn(void* param) {
       }
     }
 
-    //Drive train break controls.
+    //Drive train break and Rotate 180 button.
     if (master.get_digital_new_press(DIGITAL_DOWN)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
@@ -138,27 +140,15 @@ void DriveTrain_fn(void* param) {
       SetForwards();
     }
 
-    if (IsForward == true) {
-      //Rotate 90
-      if (master.get_digital_new_press(DIGITAL_LEFT)) {
-          Rotate(790, 50);
-          pros::delay(1200);
-      }
-      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+    //Rotate 90 to the left.
+    if (master.get_digital_new_press(DIGITAL_LEFT)) {
         Rotate(-790, 50);
         pros::delay(1200);
-      }
     }
-    else {
-      //Rotate 90
-      if (master.get_digital_new_press(DIGITAL_LEFT)) {
-          Rotate(-790, 50);
-          pros::delay(1200);
-      }
-      else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-        Rotate(790, 50);
-        pros::delay(1200);
-      }
+    //Rotate 90 to the right.
+    else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+      Rotate(790, 50);
+      pros::delay(1200);
     }
   }
 }

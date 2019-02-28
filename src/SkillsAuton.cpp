@@ -1,12 +1,15 @@
 #include "main.h"
 
+//Auton for skills.
 void SkillsAuton() {
-  //Intake on and Drive Out
+  //Intake on and drive out.
   Intake.move(100);
   Drive(3900, 3900, 110);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
+
+  //Backup.
   Drive(-500, -500, 20);
   do {
     pros::delay(20);
@@ -17,19 +20,21 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
+
+  //Drive Forwards to not turn into the wall.
   Drive(520, 520, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Intake off and Turn 90
+  //Intake off and Turn 90.
   Intake.move(0);
   Rotate(-760, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Intake down, shooter on, and drive out
+  //Intake down, shooter on, and drive out to shoot the top flag.
   Intake.move(-100);
   pros::delay(300);
   Intake.move(0);
@@ -39,14 +44,14 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Shoot top flag
+  //Shoot the top flag.
   pros::delay(1500);
   Intake.move(100);
   pros::delay(450);
   Intake.move(0);
   pros::delay(300);
 
-  //Drive Forwards, shoot middle flag, and turn off the shooter
+  //Drive Forwards, shoot middle flag, and turn off the shooter.
   Drive(1700, 1700, 60);
   do {
     pros::delay(20);
@@ -58,7 +63,7 @@ void SkillsAuton() {
   ShooterOff();
   Intake.move(100);
 
-  //Drive back turn and flip the cap
+  //Drive back, turn left, and flip the cap.
   Drive(-500, -500, 70);
   do {
     pros::delay(20);
@@ -75,7 +80,7 @@ void SkillsAuton() {
   pros::delay(500);
   Arm.move(0);
 
-  //Drive forward hit the wall, drive back, and turn torwards the flag
+  //Drive forward, align on the wall, drive back, and turn right to face the flags.
   Drive(1500, 1500, 50);
   pros::delay(2000);
   Drive(-600, -600, 50);
@@ -87,11 +92,11 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Drive forwards and hit the bottom flag
+  //Drive forwards and hit the bottom flag.
   Drive(2000, 2000, 60);
   pros::delay(2700);
 
-  //backup, turn, and go forward
+  //Backup, turn, intake on, and drive forward to suck up the ball under the cap.
   Drive(-3600, -3600, 50);
   do {
     pros::delay(20);
@@ -108,7 +113,7 @@ void SkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Intake down and shooter on
+  //Intake down and shooter on.
   Drive(-1000, -1000, 50);
   do {
     pros::delay(20);
@@ -119,7 +124,7 @@ void SkillsAuton() {
   Intake.move(0);
   ShooterOn(150);
 
-  //Turn to face the flag, wait for shooter to spin up and shoot the top flag
+  //Turn left to face the flag, wait for shooter to spin up and shoot the top flag.
   Rotate(-620, 30);
   do {
     pros::delay(20);
@@ -130,7 +135,7 @@ void SkillsAuton() {
   Intake.move(0);
   ShooterOff();
 
-  //Turn, drive up on platform, turn and drive onto center platform
+  //Turn right to face the red platform, drive up on alliance platform, turn left, and drive onto center platform.
   Rotate(-1800, 30);
   do {
     pros::delay(20);
@@ -156,7 +161,8 @@ void SkillsAuton() {
 
 
 
-//Function for skills auton
+//Old 11 point skills auton.
+//Not in use.
 void OldSkillsAuton() {
   Intake.move(600);
   Drive(3500, 3500, 75);

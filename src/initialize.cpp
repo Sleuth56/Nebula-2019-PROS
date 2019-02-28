@@ -1,15 +1,5 @@
 #include "main.h"
 
-// void on_center_button() {
-// 	static bool pressed = false;
-// 	pressed = !pressed;
-// 	if (pressed) {
-// 		pros::lcd::set_text(2, "I was pressed!");
-// 	} else {
-// 		pros::lcd::clear_line(2);
-// 	}
-// }
-
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -17,20 +7,24 @@
  * to keep execution time for this mode under a few seconds.
  */
 
+//Not used yet.
 void on_center_button() {
 }
 
+//Cycles through the autons going to the left.
 void on_left_button() {
   selection = (selection - 1 + 5) % 5;
   pros::lcd::set_text(2, titles[selection]);
 }
+
+//Cycles through the autons going to the left.
 void on_right_button() {
   selection = (selection + 1) % 5;
   pros::lcd::set_text(2, titles[selection]);
 }
 
 void initialize() {
-  //Setting the right motors to be reversed
+  //Setting the revering state of the motors.
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
@@ -55,7 +49,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+  pros::lcd::set_text(1, "How rude you disabled me.");
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field

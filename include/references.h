@@ -1,4 +1,4 @@
-//Defining the motor ports
+//Defining the motor ports.
 #define FLMotorport 10
 #define FRMotorport 2
 #define BLMotorport 9
@@ -9,7 +9,7 @@
 #define Shooter2port 14
 #define GYRO_PORT 1
 
-//Defining the motors
+//Defining the motors.
 extern pros::Motor FLMotor;
 extern pros::Motor BLMotor;
 extern pros::Motor FRMotor;
@@ -22,7 +22,7 @@ extern pros::Controller master;
 extern pros::Controller partner;
 extern pros::ADIGyro gyro;
 
-//This veriable helps control the direction of the drive train
+//These veriables tell when things are happening on the robot.
 extern bool IsBreaking;
 extern bool IsForward;
 extern bool IsShooterHot;
@@ -32,81 +32,79 @@ extern int flipTarget;
 extern int flipingSpeed;
 extern int ArmCeiling;
 
-//These map the joisticks to be used later for turning motors
+//These map the joisticks to a veriable for later use.
 extern int LeftControls;
 extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
-//------Function for Arm.cpp.------
-  void Arm_fn(void* param);
+//Function from Arm.cpp
+void Arm_fn(void* param);
 
 
-//------Function for Intake.cpp.------
-  void Intake_fn(void* param);
+//Function for Intake.cpp
+void Intake_fn(void* param);
 
-  //Functions for Shooter.cpp.
-  void Shooter_fn(void* param);
+//Functions for Shooter.cpp
+void Shooter_fn(void* param);
 
-  //Function for turning on the shooter
-  void ShooterOn(int velocity = 200);
+//Function for turning on the shooter
+void ShooterOn(int velocity = 200);
 
-  //Function for turning off the shooter
-  void ShooterOff();
+//Function for turning off the shooter
+void ShooterOff();
 
-  //Function for shooting booth top flags.
-  void ShootTwice();
-
-
-//------Functions for DriveTrain.cpp.------
-  void DriveTrain_fn(void* param);
-
-  //Returns true/false as to wheter the drive wheels have
-  //reached their position goal set by driveForDistance
-  bool AtDistanceDriveGoal(int threshold);
-
-  //Sets drive trains target, but does not wait for them to reach their target
-  void Drive(double leftInches, double rightInches, int speed);
-
-  //Turns the robot to the target position
-  void Rotate(double turn, int speed);
-
-  //Function for setting the drive trian breaks
-  void BrakeDriveTrain();
-
-  //Function for releasing the drive train breaks
-  void UnBrakeDriveTrain();
-
-  //Function for seting the cap flipper side to be the front side
-  void SetBackwords();
-
-  //Function for seting the ball shooter side to be the front side
-  void SetForwards();
-  
-  //Function for getting the gyros position
-  int GyroPos();
+//Function for shooting booth top flags.
+void ShootTwice();
 
 
-//------Functions for autonomous.cpp.------
-  //Function for the red flag side of the field
-  void RedFlag();
+//Functions for DriveTrain.cpp
+void DriveTrain_fn(void* param);
 
-  //Function for the red cap side of the field
-  void RedCap();
+//Returns true or false as to whether the drive wheels have
+//reached their position goal set by Drive.
+//Used making the program wait for the drive to finish.
+bool AtDistanceDriveGoal(int threshold);
 
-  //Function for the blue flag side of the field
-  void BlueFlag();
+//Sets drive trains target, but does not wait for them to reach their target.
+void Drive(double leftInches, double rightInches, int speed);
 
-  //Function for the blue cap side of the field
-  void BlueCap();
+//Turns the robot to the target position.
+void Rotate(double turn, int speed);
 
-  //Function for skills auton
-  void SkillsAuton();
+//Function for setting the drive trian breaks.
+void BrakeDriveTrain();
 
-  //Function for starting the right auton program
-  void LCDScriptExecute();
+//Function for releasing the drive train breaks.
+void UnBrakeDriveTrain();
 
-  //Veriables and funstions for auton selector
-  extern int selection;
-  extern const char *titles[5];
-  extern void (*scripts[5])();
+//Function for seting the cap flipper side to be the front side.
+void SetBackwords();
+
+//Function for seting the ball shooter side to be the front side.
+void SetForwards();
+
+
+//Functions for autonomous.cpp
+//Auton for the red flag side of the field.
+void RedFlag();
+
+//Auton for the red cap side of the field.
+void RedCap();
+
+//Auton for the blue flag side of the field.
+void BlueFlag();
+
+//Auton for the blue cap side of the field.
+void BlueCap();
+
+//Auton for skills.
+void SkillsAuton();
+
+//Function for starting the right auton program.
+void LCDScriptExecute();
+
+//Veriables and funstions for auton selector.
+extern int selection;
+extern const char *titles[5];
+extern void (*scripts[5])();

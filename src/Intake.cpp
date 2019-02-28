@@ -1,5 +1,6 @@
 #include "main.h"
 
+//Function for all intake controls.
 void Intake_fn(void* param) {
   int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
@@ -15,7 +16,6 @@ void Intake_fn(void* param) {
     }
     else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
       Intake.move(100);
-      //was 300
       pros::delay(260);
       Intake.move(0);
     }

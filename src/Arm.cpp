@@ -15,27 +15,25 @@ void Arm_fn(void* param) {
 
   while (true) {
     ArmControls = partner.get_analog(ANALOG_LEFT_Y);
+
     //Resets the arm's starting position for the auto cap flip button if the button is pressed.
     if (partner.get_digital(DIGITAL_DOWN)) {
       Arm.set_zero_position(0);
     }
 
+    //Buttons for automaticly flipping caps.
     if (partner.get_digital(DIGITAL_L1)) {
       Arm.move(100);
-      //was 300
       pros::delay(270);
       Arm.move(-100);
-      //was 300
       pros::delay(290);
       Arm.move(0);
       Arm.set_zero_position(0);
     }
     else if (master.get_digital(DIGITAL_L2)) {
       Arm.move(100);
-      //was 300
       pros::delay(270);
       Arm.move(-100);
-      //was 300
       pros::delay(290);
       Arm.move(0);
       Arm.set_zero_position(0);
@@ -44,18 +42,13 @@ void Arm_fn(void* param) {
       Arm.move(ArmControls);
     }
 
-    //doesn't let the arm to go over the 18 inches expantion limit unless a button is pressed on the partner controller.
+    //Doesn't let the arm to go over the 18 inches expantion limit unless the a button is pressed.
     if(abs(int(Arm.get_position() >= ArmCeiling && partner.get_digital(DIGITAL_A) == false))) {
       IsOverHeigh = true;
       Arm.move(-50);
     }
     else {
       IsOverHeigh = false;
-    }
-
-    //Resets the arm's starting position for the auto cap flip button if the button is pressed.
-    if (partner.get_digital(DIGITAL_DOWN)) {
-      Arm.set_zero_position(0);
     }
   }
 }

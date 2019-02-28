@@ -1,7 +1,7 @@
 #include "main.h"
 
 void autonomous() {
-	//------tells the user that the autonomous faze has started.------
+	//Tells the user that the autonomous faze has started.
   pros::lcd::set_text(0, "autonomous has started");
   LCDScriptExecute();
 
