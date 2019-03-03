@@ -91,7 +91,7 @@ void RedCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-530, 30);
+  Rotate(-515, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -180,6 +180,7 @@ void BlueFlag() {
   pros::delay(300);
   Intake.move(0);
   ShooterOn();
+  pros::delay(600);
 
   Drive(200, 200, 30);
   do {
@@ -219,7 +220,7 @@ void BlueFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(200);
-  Arm.move(70);
+  Arm.move(100);
   pros::delay(500);
   Arm.move(-100);
   pros::delay(500);

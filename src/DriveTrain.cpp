@@ -124,11 +124,11 @@ void DriveTrain_fn(void* param) {
     if (master.get_digital_new_press(DIGITAL_DOWN)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
-        Rotate(1580, 50);
+        //Rotate(1580, 50);
       }
       else {
         BrakeDriveTrain();
-        Rotate(1580, 50);
+        //Rotate(1580, 50);
       }
     }
 
