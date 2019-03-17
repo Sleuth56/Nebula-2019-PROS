@@ -6,25 +6,45 @@ void Intake_fn(void* param) {
 
   while (true) {
     IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
-
-    //Intake button for the master controller.
-    if (master.get_digital(DIGITAL_R2)) {
-      Intake.move(200);
-    }
-    else if (master.get_digital(DIGITAL_B)) {
-      Intake.move(-200);
-    }
-    else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
-      Intake.move(100);
-      pros::delay(260);
-      Intake.move(0);
-    }
-    else if (partner.get_digital_new_press(DIGITAL_R2)) {
-      ShootTwice();
+    if (BottomIntakeSensor.get_value() == 1 && TopIntakeSensor.get_value() == 1) {
+      if (master.get_digital(DIGITAL_B)) {
+        Intake.move(-100);
+      }
+      else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
+        Intake.move(100);
+        pros::delay(260);
+        Intake.move(0);
+      }
+      else if (partner.get_digital_new_press(DIGITAL_R2)) {
+        ShootTwice();
+      }
+      else {
+        if (IntakeControls <= 0) {
+          Intake.move((IntakeControls / 1.3));
+        }
+        else {
+          Intake.move(0);
+        }
+      }
     }
     else {
-      //Makes the motor move if the joistic moves and the button isn't being pressed.
-      Intake.move(IntakeControls);
+      if (master.get_digital(DIGITAL_R2)) {
+        Intake.move(100);
+      }
+      else if (master.get_digital(DIGITAL_B)) {
+        Intake.move(-100);
+      }
+      else if (partner.get_digital_new_press(DIGITAL_LEFT)) {
+        Intake.move(100);
+        pros::delay(260);
+        Intake.move(0);
+      }
+      else if (partner.get_digital_new_press(DIGITAL_R2)) {
+        ShootTwice();
+      }
+      else {
+          Intake.move((IntakeControls / 1.3));
+      }
     }
   }
 }

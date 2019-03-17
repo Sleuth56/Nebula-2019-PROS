@@ -12,3 +12,5 @@ pros::Motor Shooter2 (Shooter2port, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTO
 pros::Controller master (CONTROLLER_MASTER);
 pros::Controller partner (CONTROLLER_PARTNER);
 pros::ADIGyro gyro (GYRO_PORT);
+pros::ADIDigitalIn TopIntakeSensor(TopIntakeSensorPort);
+pros::ADIDigitalIn BottomIntakeSensor(BottomIntakeSensorPort);

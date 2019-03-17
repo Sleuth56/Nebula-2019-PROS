@@ -8,6 +8,8 @@
 #define Shooter1port 12
 #define Shooter2port 14
 #define GYRO_PORT 1
+#define TopIntakeSensorPort 2
+#define BottomIntakeSensorPort 3
 
 //Defining the motors.
 extern pros::Motor FLMotor;
@@ -21,6 +23,8 @@ extern pros::Motor Shooter2;
 extern pros::Controller master;
 extern pros::Controller partner;
 extern pros::ADIGyro gyro;
+extern pros::ADIDigitalIn TopIntakeSensor;
+extern pros::ADIDigitalIn BottomIntakeSensor;
 
 //These veriables tell when things are happening on the robot.
 extern bool IsBreaking;
