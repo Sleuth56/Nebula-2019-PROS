@@ -4,9 +4,10 @@
 bool IsShooterHot = false;
 
 //Function for turning on the shooter.
-void ShooterOn(int velocity) {
-  Shooter1.move_velocity(velocity);
-  Shooter2.move_velocity(velocity);
+void ShooterOn(int power) {
+  power = power / 1.2;
+  Shooter1.move(power);
+  Shooter2.move(power);
 }
 
 //Function for turning off the shooter.
@@ -17,25 +18,17 @@ void ShooterOff() {
 //Function for shooting two balls at booth of the flags at the same time.
 //Not in use yet.
 void ShootTwice() {
-  if (BottomIntakeSensor.get_value() == 1 && TopIntakeSensor.get_value() == 1) {
     ShooterOn(160);
-    pros::delay(3000);
+    pros::delay(1100);
     Intake.move(100);
-    while (BottomIntakeSensor.get_value() == 1) {
-      pros::delay(200);
-    }
-    Intake.move(0);
-    ShooterOn(100);
     pros::delay(300);
+    Intake.move(0);
+    ShooterOn(60);
+    pros::delay(200);
     Intake.move(100);
-    while (TopIntakeSensor.get_value() == 1) {
-      pros::delay(200);
-    }
+    pros::delay(400);
     Intake.move(0);
     ShooterOff();
-    
-  }
-  
 }
 
 //Thread for all arm controls.

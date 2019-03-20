@@ -20,7 +20,7 @@ void Intake_fn(void* param) {
       }
       else {
         if (IntakeControls <= 0) {
-          Intake.move((IntakeControls / 1.3));
+          Intake.move(IntakeControls);
         }
         else {
           Intake.move(0);
