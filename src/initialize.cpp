@@ -35,7 +35,6 @@ void initialize() {
   //Initializing lcd screen and printing Initial text.
   pros::lcd::initialize();
   pros::lcd::set_text(7, "                   Not Parking");
-  pros::lcd::set_text(1, "Initialized");
   pros::lcd::set_text(6, titles[selection]);
 
   // Sets a callback function for the buttons.

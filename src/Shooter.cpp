@@ -35,9 +35,6 @@ void ShootTwice() {
 void Shooter_fn(void* param) {
   bool HumanTurnOn = false;
   while (true) {
-    //Prints the shooter temps to the brain screen.
-    printf("%d, %d\n", int(pros::c::motor_get_temperature(Shooter1port)), int(pros::c::motor_get_temperature(Shooter2port)));
-
     //Buttons for controlling the shooter.
     if (partner.get_digital(DIGITAL_R1)) {
       HumanTurnOn = true;

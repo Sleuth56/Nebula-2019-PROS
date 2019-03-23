@@ -55,6 +55,9 @@ void Intake_fn(void* param);
 //Functions for Shooter.cpp
 void Shooter_fn(void* param);
 
+//Function for Terminal diagnostics.
+void Diagnostics_fn(void* param);
+
 //Function for turning on the shooter
 void ShooterOn(int velocity = 200);
 
