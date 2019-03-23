@@ -9,38 +9,47 @@
 
 //Not used yet.
 void on_center_button() {
+  if (IsParking == true) {
+    pros::lcd::set_text(7, "                   Not Parking");
+    IsParking = false;
+  }
+  else {
+    IsParking = true;
+    pros::lcd::set_text(7, "                     Parking");
+  }
 }
 
 //Cycles through the autons going to the left.
 void on_left_button() {
   selection = (selection - 1 + 5) % 5;
-  pros::lcd::set_text(2, titles[selection]);
+  pros::lcd::set_text(6, titles[selection]);
 }
 
 //Cycles through the autons going to the left.
 void on_right_button() {
   selection = (selection + 1) % 5;
-  pros::lcd::set_text(2, titles[selection]);
+  pros::lcd::print(6, titles[selection]);
 }
 
 void initialize() {
-  //Setting the revering state of the motors.
+  //Initializing lcd screen and printing Initial text.
+  pros::lcd::initialize();
+  pros::lcd::set_text(7, "                   Not Parking");
+  pros::lcd::set_text(1, "Initialized");
+  pros::lcd::set_text(6, titles[selection]);
+
+  // Sets a callback function for the buttons.
+  pros::lcd::register_btn1_cb(on_center_button);
+  pros::lcd::register_btn0_cb(on_left_button);
+  pros::lcd::register_btn2_cb(on_right_button);
+
+  //Sets Initial revering states for the motors.
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
 
-  pros::lcd::initialize();
-
-  // Sets a callback function for the buttons
-  pros::lcd::register_btn1_cb(on_center_button);
-  pros::lcd::register_btn0_cb(on_left_button);
-  pros::lcd::register_btn2_cb(on_right_button);
-
-  pros::lcd::set_text(1, "Initialized");
-
-  pros::lcd::set_text(2, titles[selection]);
-
+  //Prints to the consol that Init has finished.
   printf("Init finished\n");
 }
 

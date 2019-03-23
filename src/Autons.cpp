@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * Code for all the game autons.
+ * Skills has it's own file.
+ */
+
 //Auton for the red flag side of the field.
 void RedFlag() {
   Intake.move(600);
@@ -323,6 +328,6 @@ void BlueCap() {
 
 //Veriables and functions for the auton selector.
 int selection = 4;
-const char *titles[] = {"Red Flag", "Red Cap", "Blue Flag", "Blue Cap","Skills Auton"};
+const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }

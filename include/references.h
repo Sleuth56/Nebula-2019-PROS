@@ -42,6 +42,9 @@ extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
+//Boolian that determins if we park in auton.
+extern bool IsParking;
+
 //Function from Arm.cpp
 void Arm_fn(void* param);
 

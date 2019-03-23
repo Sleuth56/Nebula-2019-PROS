@@ -1,8 +1,6 @@
 #include "main.h"
 
 void autonomous() {
-	//Tells the user that the autonomous faze has started.
-  pros::lcd::set_text(0, "autonomous has started");
   LCDScriptExecute();
 
   while (abs(int(FLMotor.get_position() - FLMotor.get_target_position())) > 5) {

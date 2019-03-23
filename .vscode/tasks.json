@@ -1,0 +1,10 @@
+{
+    "version": "1.0.0",
+    "tasks": [
+        {
+            "label": "pros",
+            "type": "shell",
+            "command": "pros make; sudo prosv5 upload"
+        }
+    ]
+}
