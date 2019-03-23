@@ -43,7 +43,7 @@ void Intake_fn(void* param) {
         ShootTwice();
       }
       else {
-          Intake.move((IntakeControls / 1.3));
+          Intake.move(IntakeControls);
       }
     }
   }

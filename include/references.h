@@ -4,12 +4,12 @@
 #define BLMotorport 9
 #define BRMotorport 1
 #define Armport 8
-#define Intakeport 13
+#define Intakeport 20
 #define Shooter1port 12
-#define Shooter2port 14
-#define GYRO_PORT 1
-#define TopIntakeSensorPort 2
-#define BottomIntakeSensorPort 3
+#define Shooter2port 13
+#define GYRO_PORT 6
+#define TopIntakeSensorPort 8
+#define BottomIntakeSensorPort 7
 
 //Defining the motors.
 extern pros::Motor FLMotor;
