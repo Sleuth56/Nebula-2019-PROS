@@ -90,23 +90,43 @@ void DriveTrain_fn(void* param) {
   BRMotor.set_reversed(true);
 
   while (true) {
-    //Gets the joistics position and maps them to a veriable.
+    //Gets the joistics position and update it's veriable.
     LeftControls = master.get_analog(ANALOG_LEFT_Y);
     RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
     //Controls how the motors move.
     if (IsBreaking != true) {
       if (IsForward == true) {
+        if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
+          BLMotor.move(LeftControls);
+          BRMotor.move(RightControls);
+        }
+        else if (int(pros::c::motor_get_temperature(BLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(BRMotorport)) == 2147483647) {
+          FLMotor.move(LeftControls);
+          FRMotor.move(RightControls);
+        }
+        else {
           FLMotor.move(LeftControls);
           BLMotor.move(LeftControls);
           FRMotor.move(RightControls);
-          BRMotor.move(RightControls);
+          BRMotor.move(RightControls);          
+        }
         }
         else {
+          if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
+            BLMotor.move(RightControls);
+            BRMotor.move(LeftControls);
+          }
+          else if (int(pros::c::motor_get_temperature(BLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(BRMotorport)) == 2147483647) {
+            FLMotor.move(RightControls);
+            FRMotor.move(LeftControls);
+          }
+          else {
           FLMotor.move(RightControls);
           BLMotor.move(RightControls);
           FRMotor.move(LeftControls);
           BRMotor.move(LeftControls);
+          }
         }
     }
 
