@@ -41,7 +41,7 @@ void Shooter_fn(void* param) {
       // 160
       ShooterOn(200);
     }
-    else if (partner.get_digital(DIGITAL_A)) {
+    else if (partner.get_digital(DIGITAL_Y)) {
       HumanTurnOn = true;
       ShooterOn(-50);
     }

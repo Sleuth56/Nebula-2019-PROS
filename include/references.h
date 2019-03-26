@@ -1,7 +1,7 @@
 //Defining the motor ports.
-#define FLMotorport 10
+#define FLMotorport 9
 #define FRMotorport 2
-#define BLMotorport 9
+#define BLMotorport 10
 #define BRMotorport 1
 #define Armport 8
 #define Intakeport 20
