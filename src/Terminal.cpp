@@ -3,6 +3,7 @@
 //This function is responsible for printing out diagnostic data to a terminal.
 void Diagnostics_fn(void* param) {
     int AutoTime;
+
     while (true) {
         //Prints the shooter temps to the terminal.
         // printf("Shooter1 Temp: %d, Shooter2 Temp: %d\n", int(pros::c::motor_get_temperature(Shooter1port)), int(pros::c::motor_get_temperature(Shooter2port)));
@@ -13,10 +14,12 @@ void Diagnostics_fn(void* param) {
         // else {
         //     printf("false");
         // }
-        AutoTime = (master.get_analog(ANALOG_LEFT_Y) + master.get_analog(ANALOG_RIGHT_Y) / 2);
-            if (AutoTime < 0) {
-                AutoTime = AutoTime*-1;
-            }
-        printf("%d\n", ((AutoTime-300)*-1));
+        // AutoTime = (master.get_analog(ANALOG_LEFT_Y) + master.get_analog(ANALOG_RIGHT_Y) / 2);
+        //     if (AutoTime < 0) {
+        //         AutoTime = AutoTime*-1;
+        //     }
+        // printf("%d\n", ((AutoTime-300)*-1));
+
+        printf("%d\n", int(int(gyro.get_value()) / 20));
     }
 }

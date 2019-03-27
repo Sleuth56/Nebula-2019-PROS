@@ -7,83 +7,85 @@
 
 //Auton for the red flag side of the field.
 void RedFlag() {
-  Intake.move(600);
-  Drive(3500, 3500, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-
-  Drive(-3600,-3600, 100);
-  pros::delay(700);
-  Intake.move(-100);
-  pros::delay(300);
-  Intake.move(0);
-  ShooterOn(150);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-
-  Drive(200, 200, 30);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  Rotate(-680, 30);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-  Drive(900, 900, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-  Intake.move(100);
-  pros::delay(500);
-  Intake.move(0);
-
-  Drive(1540, 1340, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-  Rotate(-30, 30);
-  Intake.move(100);
-  pros::delay(600);
-  Intake.move(0);
-  ShooterOff();
-
-  Rotate(-800, 50);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-  Drive(-900, -900, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(200);
-  Arm.move(100);
-  pros::delay(500);
-  Arm.move(-100);
-  pros::delay(500);
-  Arm.move(0);
-
-  FLMotor.move(127);
-  FRMotor.move(15);
-  BLMotor.move(127);
-  BRMotor.move(15);
-  pros::delay(1500);
-  FLMotor.move(-50);
-  FRMotor.move(-50);
-  BLMotor.move(-50);
-  BRMotor.move(-50);
   pros::delay(1000);
-  FLMotor.move(0);
-  FRMotor.move(0);
-  BLMotor.move(0);
-  BRMotor.move(0);
+  Rotate(80, 90);
+  // Intake.move(600);
+  // Drive(3500, 3500, 100);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+
+  // Drive(-3600,-3600, 100);
+  // pros::delay(700);
+  // Intake.move(-100);
+  // pros::delay(300);
+  // Intake.move(0);
+  // ShooterOn(150);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+
+  // Drive(200, 200, 30);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+  // Rotate(-680, 30);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  // Drive(900, 900, 100);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  // Intake.move(100);
+  // pros::delay(500);
+  // Intake.move(0);
+
+  // Drive(1540, 1340, 100);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  // Rotate(-30, 30);
+  // Intake.move(100);
+  // pros::delay(600);
+  // Intake.move(0);
+  // ShooterOff();
+
+  // Rotate(-800, 50);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+
+  // Drive(-900, -900, 100);
+  // do {
+  //   pros::delay(20);
+  // } while (!AtDistanceDriveGoal(5));
+  // pros::delay(200);
+  // Arm.move(100);
+  // pros::delay(500);
+  // Arm.move(-100);
+  // pros::delay(500);
+  // Arm.move(0);
+
+  // FLMotor.move(127);
+  // FRMotor.move(15);
+  // BLMotor.move(127);
+  // BRMotor.move(15);
+  // pros::delay(1500);
+  // FLMotor.move(-50);
+  // FRMotor.move(-50);
+  // BLMotor.move(-50);
+  // BRMotor.move(-50);
+  // pros::delay(1000);
+  // FLMotor.move(0);
+  // FRMotor.move(0);
+  // BLMotor.move(0);
+  // BRMotor.move(0);
 }
 
 //Auton for the red cap side of the field.
@@ -327,7 +329,7 @@ void BlueCap() {
 }
 
 //Veriables and functions for the auton selector.
-int selection = 4;
+int selection = 0;
 const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }

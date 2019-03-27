@@ -13,6 +13,11 @@ bool AtDistanceDriveGoal(int threshold) {
 }
 
 
+int GyroPos() {
+  return (int(gyro.get_value()) / 10);
+}
+
+
 //Sets drive trains target, but does not wait for them to reach their target.
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
@@ -24,11 +29,44 @@ void Drive(double leftInches, double rightInches, int speed) {
 
 
 //Turns the robot to the target position.
-void Rotate(double turn, int speed) {
-  FLMotor.move_relative(turn , speed);
-  FRMotor.move_relative(-turn, speed);
-  BLMotor.move_relative(turn, speed);
-  BRMotor.move_relative(-turn, speed);
+// void RotateOld(double turn, int speed) {
+//   FLMotor.move_relative(turn , speed);
+//   FRMotor.move_relative(-turn, speed);
+//   BLMotor.move_relative(turn, speed);
+//   BRMotor.move_relative(-turn, speed);
+// }
+
+
+//Turns the robot to the target position
+void Rotate(int turn, int speed) {
+  if (turn > 0) {
+  FLMotor.move(speed);
+  FRMotor.move(-speed);
+  BLMotor.move(speed);
+  BRMotor.move(-speed);
+
+  while (int(int(gyro.get_value()) / 25) != (turn / 2.5)) {
+    pros::delay(20);
+  }
+  FLMotor.move(0);
+  FRMotor.move(0);
+  BLMotor.move(0);
+  BRMotor.move(0);
+  }
+  else {
+    FLMotor.move(-speed);
+    FRMotor.move(speed);
+    BLMotor.move(-speed);
+    BRMotor.move(speed);
+
+    while (int(int(gyro.get_value()) / 25) != (turn / 2.5)) {
+      pros::delay(20);
+    }
+    FLMotor.move(0);
+    FRMotor.move(0);
+    BLMotor.move(0);
+    BRMotor.move(0);
+  }
 }
 
 

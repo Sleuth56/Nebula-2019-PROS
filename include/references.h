@@ -80,7 +80,7 @@ bool AtDistanceDriveGoal(int threshold);
 void Drive(double leftInches, double rightInches, int speed);
 
 //Turns the robot to the target position.
-void Rotate(double turn, int speed);
+void Rotate(int turn, int speed);
 
 //Function for setting the drive trian breaks.
 void BrakeDriveTrain();
