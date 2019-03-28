@@ -14,7 +14,7 @@ bool AtDistanceDriveGoal(int threshold) {
 
 
 int GyroPos() {
-  return (int(gyro.get_value()) / 10);
+  return (int(gyro.get_value()) / 25);
 }
 
 
@@ -45,7 +45,7 @@ void Rotate(int turn, int speed) {
   BLMotor.move(speed);
   BRMotor.move(-speed);
 
-  while (int(int(gyro.get_value()) / 25) != (turn / 2.5)) {
+  while (int(GyroPos()) != (turn / 2.5)) {
     pros::delay(20);
   }
   FLMotor.move(0);
@@ -59,7 +59,7 @@ void Rotate(int turn, int speed) {
     BLMotor.move(-speed);
     BRMotor.move(speed);
 
-    while (int(int(gyro.get_value()) / 25) != (turn / 2.5)) {
+    while (int(GyroPos()) != (turn / 2.5)) {
       pros::delay(20);
     }
     FLMotor.move(0);
