@@ -50,6 +50,9 @@ void initialize() {
 
   // pros::Task Diagnostics(Diagnostics_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 
+  //Tells the arm to hold it's position.
+  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
   //Prints to the consol that Init has finished.
   printf("Init finished\n");
 }

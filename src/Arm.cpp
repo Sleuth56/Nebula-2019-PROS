@@ -12,9 +12,6 @@ void Arm_fn(void* param) {
   int ArmControls = partner.get_analog(ANALOG_LEFT_Y);
   int AutoTime = (master.get_analog(ANALOG_LEFT_Y) + master.get_analog(ANALOG_RIGHT_Y) / 2);
 
-  //Tells the arm to hold it's position.
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
   while (true) {
     AutoTime = (master.get_analog(ANALOG_LEFT_Y) + master.get_analog(ANALOG_RIGHT_Y) / 2);
     ArmControls = partner.get_analog(ANALOG_LEFT_Y);

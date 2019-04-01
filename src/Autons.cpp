@@ -171,13 +171,13 @@ void RedCap() {
 //Auton for the blue flag side of the field.
 void BlueFlag() {
   Intake.move(600);
-  Drive(3500, 3500, 100);
-  
-  FRMotor.move_relative(-3600, 100);
-  BRMotor.move_relative(-3600, -100);
+  Drive(3500, 3500, 120);
+
+  FRMotor.move_relative(-3600, 120);
+  BRMotor.move_relative(-3600, -120);
   pros::delay(10);
-  FLMotor.move_relative(-3600, 100);
-  BLMotor.move_relative(-3600, -100);
+  FLMotor.move_relative(-3600, 120);
+  BLMotor.move_relative(-3600, -120);
   pros::delay(300);
 
   Intake.move(-100);
@@ -194,43 +194,40 @@ void BlueFlag() {
   Drive(200, 200, 30);
   Rotate(78, 50);
 
-  Drive(900, 900, 100);
+  Drive(1300, 1300, 100);
 
+  pros::delay(300);
   Intake.move(100);
   pros::delay(400);
   Intake.move(0);
 
-  Drive(1400, 1400, 100);
+  Drive(1100, 1100, 100);
 
+  pros::delay(300);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
 
-  Rotate(80, 50);
+  Rotate(-60, 100);
+
+  Arm.move_relative(1200, 100);
+  pros::delay(500);
+  Rotate(-55, 50);
+
+  Arm.move_relative(-1200, 100);
+  pros::delay(500);
+  Rotate(-93, 100);
 
   Drive(-900, -900, 100);
-  pros::delay(200);
-  Arm.move(100);
+  Arm.move_relative(800, 80);
   pros::delay(500);
-  Arm.move(-100);
-  pros::delay(500);
-  Arm.move(0);
+  Arm.move_relative(400, 100);
+  pros::delay(150);
 
-  FLMotor.move(15);
-  FRMotor.move(127);
-  BLMotor.move(15);
-  BRMotor.move(127);
-  pros::delay(1500);
-  FLMotor.move(-50);
-  FRMotor.move(-50);
-  BLMotor.move(-50);
-  BRMotor.move(-50);
-  pros::delay(1000);
-  FLMotor.move(0);
-  FRMotor.move(0);
-  BLMotor.move(0);
-  BRMotor.move(0);
+  Rotate(50, 50);
+  Drive(-2200, -2200, 200);
+  Drive(500, 500, 200);
 }
 
 //Auton for the blue cap side of the field.
@@ -313,7 +310,7 @@ void BlueCap() {
 }
 
 //Veriables and functions for the auton selector.
-int selection = 0;
+int selection = 2;
 const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }
