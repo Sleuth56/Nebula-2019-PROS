@@ -29,7 +29,7 @@ void RedFlag() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-680, 30);
+  Rotate(-90, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -48,13 +48,13 @@ void RedFlag() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Rotate(-30, 30);
+  Rotate(-10, 30);
   Intake.move(100);
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
 
-  Rotate(-800, 50);
+  Rotate(-110, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -96,7 +96,7 @@ void RedCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-515, 30);
+  Rotate(-50, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -117,7 +117,7 @@ void RedCap() {
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
-  Rotate(-260, 30);
+  Rotate(-20, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -130,7 +130,7 @@ void RedCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-820, 30);
+  Rotate(-80, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -191,7 +191,7 @@ void BlueFlag() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(740, 50);
+  Rotate(90, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -215,7 +215,7 @@ void BlueFlag() {
   Intake.move(0);
   ShooterOff();
 
-  Rotate(740, 50);
+  Rotate(90, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -257,7 +257,7 @@ void BlueCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(550, 30);
+  Rotate(50, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -278,7 +278,7 @@ void BlueCap() {
   pros::delay(600);
   Intake.move(0);
   ShooterOff();
-  Rotate(260, 30);
+  Rotate(20, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -291,7 +291,7 @@ void BlueCap() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(800, 30);
+  Rotate(93, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
