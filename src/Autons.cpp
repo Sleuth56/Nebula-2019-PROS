@@ -7,8 +7,11 @@
 
 //Auton for the red flag side of the field.
 void RedFlag() {
-  pros::delay(1000);
-  Rotate(80, 90);
+  Drive(2000, 2000 ,50);
+  Rotate(-90, 50);
+  Drive(2000, 2000 ,50);
+  Rotate(180, 50);
+  Drive(1000, 1000, 50);
   // Intake.move(600);
   // Drive(3500, 3500, 100);
   // do {

@@ -14,7 +14,7 @@ bool AtDistanceDriveGoal(int threshold) {
 
 
 int GyroPos() {
-  return (int(gyro.get_value()) / 25);
+  return (int(gyro.get_value()) / 10);
 }
 
 
@@ -25,41 +25,61 @@ void Drive(double leftInches, double rightInches, int speed) {
   pros::delay(10);
   FLMotor.move_relative(rightInches, speed);
   BLMotor.move_relative(leftInches, -speed);
+  do {
+  pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
 }
 
 
 //Turns the robot to the target position.
-// void RotateOld(double turn, int speed) {
-//   FLMotor.move_relative(turn , speed);
-//   FRMotor.move_relative(-turn, speed);
-//   BLMotor.move_relative(turn, speed);
-//   BRMotor.move_relative(-turn, speed);
-// }
+void Driver_Rotate(double turn, int speed) {
+  FLMotor.move_relative(turn , speed);
+  FRMotor.move_relative(-turn, speed);
+  BLMotor.move_relative(turn, speed);
+  BRMotor.move_relative(-turn, speed);
+}
 
 
 //Turns the robot to the target position
-void Rotate(int turn, int speed) {
-  if (turn > 0) {
-  FLMotor.move(speed);
-  FRMotor.move(-speed);
-  BLMotor.move(speed);
-  BRMotor.move(-speed);
-
-  while (int(GyroPos()) != (turn / 2.5)) {
-    pros::delay(20);
-  }
-  FLMotor.move(0);
-  FRMotor.move(0);
-  BLMotor.move(0);
-  BRMotor.move(0);
+void Rotate(int TargetPos, int speed) {
+  bool IsLeft;
+  if (TargetPos > 0) {
+    FLMotor.move(speed);
+    FRMotor.move(-speed);
+    BLMotor.move(speed);
+    BRMotor.move(-speed);
+    IsLeft = true;
   }
   else {
     FLMotor.move(-speed);
     FRMotor.move(speed);
     BLMotor.move(-speed);
     BRMotor.move(speed);
+    IsLeft = false;
+  }
 
-    while (int(GyroPos()) != (turn / 2.5)) {
+  TargetPos = TargetPos / 2;
+  TargetPos = TargetPos + (GyroPos() / 2);
+
+  if (TargetPos > 180) {
+    TargetPos = TargetPos - 180;
+  }
+  if (TargetPos < -180) {
+    TargetPos = TargetPos + 180;
+  }
+
+
+  if (IsLeft == true) {
+    while (TargetPos >= (GyroPos() / 2)) {
+      pros::delay(20);
+    }
+    FLMotor.move(0);
+    FRMotor.move(0);
+    BLMotor.move(0);
+    BRMotor.move(0);
+  }
+  else {
+    while (TargetPos <= (GyroPos() / 2)) {
       pros::delay(20);
     }
     FLMotor.move(0);
@@ -68,7 +88,6 @@ void Rotate(int turn, int speed) {
     BRMotor.move(0);
   }
 }
-
 
 //Function for setting the drive trian breaks.
 void BrakeDriveTrain() {
@@ -200,12 +219,12 @@ void DriveTrain_fn(void* param) {
 
     //Rotate 90 to the left.
     if (master.get_digital_new_press(DIGITAL_LEFT)) {
-        Rotate(-790, 50);
+        Driver_Rotate(-770, 50);
         pros::delay(1200);
     }
     //Rotate 90 to the right.
     else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-      Rotate(790, 50);
+      Driver_Rotate(770, 50);
       pros::delay(1200);
     }
   }

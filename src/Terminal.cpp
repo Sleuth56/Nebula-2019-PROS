@@ -20,6 +20,6 @@ void Diagnostics_fn(void* param) {
         //     }
         // printf("%d\n", ((AutoTime-300)*-1));
 
-        printf("%d\n", int(int(gyro.get_value()) / 20));
+        printf("%d\n", GyroPos());
     }
 }

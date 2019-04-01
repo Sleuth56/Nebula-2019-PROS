@@ -75,12 +75,13 @@ void DriveTrain_fn(void* param);
 //reached their position goal set by Drive.
 //Used making the program wait for the drive to finish.
 bool AtDistanceDriveGoal(int threshold);
-
+int GyroPos();
 //Sets drive trains target, but does not wait for them to reach their target.
 void Drive(double leftInches, double rightInches, int speed);
 
 //Turns the robot to the target position.
 void Rotate(int turn, int speed);
+void Driver_Rotate(double turn, int speed);
 
 //Function for setting the drive trian breaks.
 void BrakeDriveTrain();
