@@ -48,7 +48,7 @@ void initialize() {
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
 
-  pros::Task Diagnostics(Diagnostics_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+  // pros::Task Diagnostics(Diagnostics_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 
   //Prints to the consol that Init has finished.
   printf("Init finished\n");
