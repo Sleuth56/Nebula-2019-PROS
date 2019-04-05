@@ -20,4 +20,4 @@ pros::ADIDigitalIn TopIntakeSensor(TopIntakeSensorPort);
 pros::ADIDigitalIn BottomIntakeSensor(BottomIntakeSensorPort);
 
 //Defining global veriables.
-bool IsParking = false;
+bool IsParking = true;
