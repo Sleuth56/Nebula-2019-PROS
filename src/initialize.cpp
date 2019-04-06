@@ -34,7 +34,12 @@ void on_right_button() {
 void initialize() {
   //Initializing lcd screen and printing Initial text.
   pros::lcd::initialize();
-  pros::lcd::set_text(7, "                   Not Parking");
+  if (IsParking == true) {
+    pros::lcd::set_text(7, "                     Parking");
+  }
+  else {
+    pros::lcd::set_text(7, "                   Not Parking");
+  }
   pros::lcd::set_text(6, titles[selection]);
 
   // Sets a callback function for the buttons.
