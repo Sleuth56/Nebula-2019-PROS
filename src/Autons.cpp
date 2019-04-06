@@ -9,7 +9,7 @@ void RedFlag() {
   /*
     Intake on
     Drive Forward
-    get the ball from the cap
+    Get the ball from under the cap
     Drive Back to the starting wall
   */
   Intake.move(200);
@@ -110,6 +110,13 @@ void RedFlag() {
 }
 
 void RedCap() {
+  /*
+    Shooter on
+    Drive forward
+    Turn to face the middle flag
+    Shoot the top middle flag
+    Shooter off
+  */
   ShooterOn(150);
   Drive(400, 400, 60);
   Rotate(-58, 30);
@@ -117,20 +124,48 @@ void RedCap() {
   pros::delay(500);
   Intake.move(0);
   ShooterOff();
+
+
+  /*
+    Turn the arm twords the far cap
+    Drive forwards
+    Flip the cap
+  */
   Rotate(-90, 50);
   Drive(-3000, -3000, 130);
   Arm.move_relative(1100, 100);
   pros::delay(800);
   Arm.move_relative(-1100, 100);
+
+
+  /*
+    Turn a little
+    Drive forwards
+    Turn to face the cap with the ball under it
+  */
   Rotate(20, 50);
   Drive(1500, 1500, 100);
   Rotate(125, 50);
+
+
+  /*
+    Intake on
+    Drive forwards
+    Get the ball from under the cap
+    Drive back to prepare to park on the platform
+  */
   Intake.move(100);
   Drive(1400, 1400, 100);
   Intake.move(100);
   Drive(-1000, -1000, 100);
   Intake.move(0);
 
+
+  /*
+    If IsParking is true
+    Turn 90 twords the platform
+    Drive up onto the alliance platform
+  */
   if (IsParking == true) {
     Rotate(-80, 50);
     Drive(2100, 2100, 100);
@@ -141,7 +176,7 @@ void BlueFlag() {
   /*
     Intake on
     Drive Forward
-    get the ball from the cap
+    Get the ball from under the cap
     Drive Back to the starting wall
   */
   Intake.move(600);
@@ -241,6 +276,13 @@ void BlueFlag() {
 }
 
 void BlueCap() {
+  /*
+    Shooter on
+    Drive forward
+    Turn to face the middle flag
+    Shoot the top middle flag
+    Shooter off
+  */
   ShooterOn(150);
   Drive(400, 400, 60);
   Rotate(63, 30);
@@ -248,20 +290,47 @@ void BlueCap() {
   pros::delay(500);
   Intake.move(0);
   ShooterOff();
+
+
+  /*
+    Turn the arm twords the far cap
+    Drive forwards
+    Flip the cap
+  */
   Rotate(77, 50);
   Drive(-3000, -3000, 130);
   Arm.move_relative(1100, 100);
   pros::delay(800);
   Arm.move_relative(-1100, 100);
+
+
+  /*
+    Turn a little
+    Drive forwards
+    Turn to face the cap with the ball under it
+  */
   Rotate(-20, 50);
   Drive(1500, 1500, 100);
   Rotate(-115, 50);
+
+
+  /*
+    Intake on
+    Drive forwards
+    Get the ball from under the cap
+    Drive back to prepare to park on the platform
+  */
   Intake.move(100);
   Drive(1400, 1400, 100);
-  Intake.move(100);
   Drive(-1000, -1000, 100);
   Intake.move(0);
 
+
+  /*
+    If IsParking is true
+    Turn 90 twords the platform
+    Drive up onto the alliance platform
+  */
   if (IsParking == true) {
     Rotate(80, 50);
     Drive(2100, 2100, 100);
