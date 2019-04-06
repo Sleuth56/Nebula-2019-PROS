@@ -110,84 +110,30 @@ void RedFlag() {
 }
 
 void RedCap() {
-  /*
-    Intake on
-    Drive Forward
-    get the ball from the cap
-  */
-  Intake.move(600);
-  Drive(3500, 3500, 100);
-
-  while(BottomIntakeSensor.get_value() == 0 && TopIntakeSensor.get_value() == 0) {
-    pros::delay(20);
-  }
-  Intake.move(0);
-
-
-  /*
-    Turn 45
-    Drive back
-    Turn to face the cap with the arm
-  */
-  Rotate(-50, 50);
-  Drive(-1000, -1000, 100);
-  Rotate(-75, 50);
-
-
-  /*
-    Arm up
-    Flip the cap
-    Arm down
-  */
-  Arm.move_relative(1140, 100);
-  pros::delay(800);
-  Arm.move_relative(-1140, 100);
-
-
-  /*
-    Turn to face the alliance platform
-    Drive forward
-    align with the aliance platform
-    Pull back the back right motor to align with the far flags
-  */
-  Rotate(35, 50);
-  
-  BLMotor.move_relative(1500, 50);
-  pros::delay(20);
-  BRMotor.move_relative(1500, 50);
-  pros::delay(2500);
-
-  BRMotor.move_relative(-570, 40);
-  pros::delay(2000);
-
-
-  /*
-    Shooter on
-    Wait for the flywheel to spin up
-    Shoot the top flag
-    Wait for the flywheel to spin up
-    Shoot the middle flag
-    Shooter off
-  */
-  ShooterOn(140);
-  pros::delay(1300);
+  ShooterOn(150);
+  Drive(400, 400, 60);
+  Rotate(-58, 30);
   Intake.move(100);
-  pros::delay(400);
-  Intake.move(0);
-  pros::delay(1000);
-  Intake.move(100);
-  pros::delay(400);
+  pros::delay(500);
   Intake.move(0);
   ShooterOff();
+  Rotate(-90, 50);
+  Drive(-3000, -3000, 130);
+  Arm.move_relative(1100, 100);
+  pros::delay(800);
+  Arm.move_relative(-1100, 100);
+  Rotate(20, 50);
+  Drive(1500, 1500, 100);
+  Rotate(125, 50);
+  Intake.move(100);
+  Drive(1400, 1400, 100);
+  Intake.move(100);
+  Drive(-1000, -1000, 100);
+  Intake.move(0);
 
-  /*
-    If IsParking is true
-    Turn to face the alliance platform
-    Drive up on to the alliance platform
-  */
   if (IsParking == true) {
-    Rotate(-20, 40);
-    Drive(2000, 2000, 100);
+    Rotate(-80, 50);
+    Drive(2100, 2100, 100);
   }
 }
 
@@ -295,91 +241,35 @@ void BlueFlag() {
 }
 
 void BlueCap() {
-  /*
-    Intake on
-    Drive Forward
-    get the ball from the cap
-    Drive Back to the starting wall
-  */
-  Intake.move(600);
-  Drive(3500, 3500, 100);
-
-  while(BottomIntakeSensor.get_value() == 0 && TopIntakeSensor.get_value() == 0) {
-    pros::delay(20);
-  }
-  Intake.move(0);
-
-
-  /*
-    Turn 45
-    Drive back
-    Turn to face the cap with the arm
-  */
-  Rotate(50, 50);
-  Drive(-1000, -1000, 100);
-  Rotate(75, 50);
-
-
-  /*
-    Arm up
-    Flip the cap
-    Arm down
-  */
-  Arm.move_relative(1140, 100);
-  pros::delay(800);
-  Arm.move_relative(-1140, 100);
-
-
-  /*
-    Turn to face the alliance platform
-    Drive forward
-    align with the aliance platform
-    Pull back the back left motor to align with the far flags
-  */
-  Rotate(-35, 50);
-  
-  BLMotor.move_relative(1500, 50);
-  pros::delay(20);
-  BRMotor.move_relative(1500, 50);
-  pros::delay(2500);
-
-  BLMotor.move_relative(-570, 40);
-  pros::delay(2000);
-
-
-  /*
-    Shooter on
-    Wait for the flywheel to spin up
-    Shoot the top flag
-    Wait for the flywheel to spin up
-    Shoot the middle flag
-    Shooter off
-  */
-  ShooterOn(140);
-  pros::delay(1300);
+  ShooterOn(150);
+  Drive(400, 400, 60);
+  Rotate(63, 30);
   Intake.move(100);
-  pros::delay(400);
-  Intake.move(0);
-  pros::delay(1000);
-  Intake.move(100);
-  pros::delay(400);
+  pros::delay(500);
   Intake.move(0);
   ShooterOff();
+  Rotate(77, 50);
+  Drive(-3000, -3000, 130);
+  Arm.move_relative(1100, 100);
+  pros::delay(800);
+  Arm.move_relative(-1100, 100);
+  Rotate(-20, 50);
+  Drive(1500, 1500, 100);
+  Rotate(-115, 50);
+  Intake.move(100);
+  Drive(1400, 1400, 100);
+  Intake.move(100);
+  Drive(-1000, -1000, 100);
+  Intake.move(0);
 
-
-  /*
-    If IsParking is true
-    Turn to face the alliance platform
-    Drive up on to the alliance platform
-  */
   if (IsParking == true) {
-    Rotate(20, 40);
-    Drive(2000, 2000, 100);
+    Rotate(80, 50);
+    Drive(2100, 2100, 100);
   }
 }
 
 //Veriables and functions for the auton selector.
-int selection = 0;
+int selection = 1;
 const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
 void LCDScriptExecute() { scripts[selection](); }
