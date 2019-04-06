@@ -29,7 +29,7 @@ void SkillsAuton() {
 
   //Intake off and Turn 90.
   Intake.move(0);
-  Rotate(-740, 40);
+  Driver_Rotate(-740, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -68,7 +68,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-770, 40);
+  Driver_Rotate(-770, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -87,7 +87,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(750, 40);
+  Driver_Rotate(750, 40);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -101,7 +101,7 @@ void SkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(800, 50);
+  Driver_Rotate(800, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -125,7 +125,7 @@ void SkillsAuton() {
   ShooterOn(125);
 
   //Turn left to face the flag, wait for shooter to spin up and shoot the top flag.
-  Rotate(-560, 30);
+  Driver_Rotate(-560, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -136,7 +136,7 @@ void SkillsAuton() {
   ShooterOff();
 
   //Turn right to face the red platform, drive up on alliance platform, turn left, and drive onto center platform.
-  Rotate(-2000, 30);
+  Driver_Rotate(-2000, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -147,7 +147,7 @@ void SkillsAuton() {
   BrakeDriveTrain();
   pros::delay(500);
   UnBrakeDriveTrain();
-  Rotate(-740, 50);
+  Driver_Rotate(-740, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -177,7 +177,7 @@ void OldSkillsAuton() {
 
   Intake.move(0);
   pros::delay(300);
-  Rotate(730, 30);
+  Driver_Rotate(730, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -195,7 +195,7 @@ void OldSkillsAuton() {
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  Rotate(-90, 30);
+  Driver_Rotate(-90, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -203,7 +203,7 @@ void OldSkillsAuton() {
   pros::delay(600);
   Intake.move(0);
 
-  Rotate(120, 30);
+  Driver_Rotate(120, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -219,7 +219,7 @@ void OldSkillsAuton() {
   pros::delay(400);
 
   //Turn strait and backup to allign with the platform.
-  Rotate(150, 30);
+  Driver_Rotate(150, 30);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -228,8 +228,8 @@ void OldSkillsAuton() {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //Rotate to face the platform.
-  Rotate(-800, 50); //if the rotate command doesn't work past this after it. pros::delay(1200);
+  //Driver_Rotate to face the platform.
+  Driver_Rotate(-800, 50); //if the rotate command doesn't work past this after it. pros::delay(1200);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
