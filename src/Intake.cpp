@@ -1,11 +1,15 @@
 #include "main.h"
 
-//Function for all intake controls.
+// Thread for all intake controls
 void Intake_fn(void* param) {
   int IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
 
   while (true) {
     IntakeControls = partner.get_analog(ANALOG_RIGHT_Y);
+    /*
+      Stops the intake from running up when two balls are at the top of the intake
+      except for the single shot button
+    */
     if (BottomIntakeSensor.get_value() == 1 && TopIntakeSensor.get_value() == 1) {
       if (master.get_digital(DIGITAL_B)) {
         Intake.move(-100);

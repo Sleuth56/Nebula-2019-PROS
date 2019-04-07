@@ -1,4 +1,4 @@
-//Defining the motor ports.
+// Defining ports
 #define FLMotorport 9
 #define FRMotorport 2
 #define BLMotorport 10
@@ -11,7 +11,7 @@
 #define TopIntakeSensorPort 8
 #define BottomIntakeSensorPort 7
 
-//Defining the motors.
+// Defining motor and sensor objects
 extern pros::Motor FLMotor;
 extern pros::Motor BLMotor;
 extern pros::Motor FRMotor;
@@ -26,96 +26,68 @@ extern pros::ADIGyro gyro;
 extern pros::ADIDigitalIn TopIntakeSensor;
 extern pros::ADIDigitalIn BottomIntakeSensor;
 
-//These veriables tell when things are happening on the robot.
+// These are information veriables that tell you when things are happening on the robot
 extern bool IsBreaking;
 extern bool IsForward;
-extern bool IsShooterHot;
-extern bool IsFlipping;
 extern bool IsOverHeigh;
-extern int flipTarget;
-extern int flipingSpeed;
 extern int ArmCeiling;
 
-//These map the joisticks to a veriable for later use.
+// Defining joistic veriables
 extern int LeftControls;
 extern int RightControls;
 extern int ArmControls;
 extern int IntakeControls;
 
-//Boolian that determins if we park in auton.
+// Boolian that determins wheather we park in auton
 extern bool IsParking;
 
-//Function from Arm.cpp
+
+// Function from Arm.cpp
 void Arm_fn(void* param);
 
 
-//Function for Intake.cpp
+// Function for Intake.cpp
 void Intake_fn(void* param);
 
-//Functions for Shooter.cpp
+
+// Functions for Shooter.cpp
 void Shooter_fn(void* param);
-
-//Function for Terminal diagnostics.
-void Diagnostics_fn(void* param);
-
-//Function for turning on the shooter
 void ShooterOn(int velocity = 200);
-
-//Function for turning off the shooter
 void ShooterOff();
-
-//Function for shooting booth top flags.
 void ShootTwice();
 
 
-//Functions for DriveTrain.cpp
+// Functions for DriveTrain.cpp
 void DriveTrain_fn(void* param);
-
-//Returns true or false as to whether the drive wheels have
-//reached their position goal set by Drive.
-//Used making the program wait for the drive to finish.
-bool AtDistanceDriveGoal(int threshold);
-int GyroPos();
-//Sets drive trains target, but does not wait for them to reach their target.
-void Drive(double leftInches, double rightInches, int speed);
-
-//Turns the robot to the target position.
 void Rotate(int turn, int speed);
 void Driver_Rotate(double turn, int speed);
-
-//Function for setting the drive trian breaks.
 void BrakeDriveTrain();
-
-//Function for releasing the drive train breaks.
 void UnBrakeDriveTrain();
-
-//Function for seting the cap flipper side to be the front side.
 void SetBackwords();
-
-//Function for seting the ball shooter side to be the front side.
 void SetForwards();
+/*
+    Blocks the program from continuing until the drive train has
+    reached its target position set by the Drive function. 
+*/
+bool AtDistanceDriveGoal(int threshold);
+void Drive(double leftInches, double rightInches, int speed);
+int GyroPos();
 
 
-//Functions for autonomous.cpp
-//Auton for the red flag side of the field.
+// Functions for Terminal.cpp
+void Diagnostics_fn(void* param);
+
+
+// Functions for autonomous.cpp
 void RedFlag();
-
-//Auton for the red cap side of the field.
 void RedCap();
-
-//Auton for the blue flag side of the field.
 void BlueFlag();
-
-//Auton for the blue cap side of the field.
 void BlueCap();
-
-//Auton for skills.
 void SkillsAuton();
 
-//Function for starting the right auton program.
-void LCDScriptExecute();
 
-//Veriables and funstions for auton selector.
+void LCDScriptExecute();
+// Veriables and funstions for auton selector.
 extern int selection;
 extern const char *titles[5];
 extern void (*scripts[5])();

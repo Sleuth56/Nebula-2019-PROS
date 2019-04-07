@@ -1,24 +1,25 @@
 #include "main.h"
 
-//Veriables for tweaking the drive train.
+// Status veriables for the drive train
 bool IsBreaking = false;
 bool IsForward = true;
 
 
-//Returns true or false as to whether the drive wheels have
-//reached their position goal set by Drive.
-//Used making the program wait for the drive to finish.
+/*
+    Blocks the program from continuing until the drive train has
+    reached its target position set by the Drive function
+*/
 bool AtDistanceDriveGoal(int threshold) {
   return (abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold) &&(abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold);
 }
 
-
+// Returns the gyro's current position in degrees
 int GyroPos() {
   return (int(gyro.get_value()) / 10);
 }
 
 
-//Sets drive trains target, but does not wait for them to reach their target.
+// Moves the drive train forwards and backwards
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
   BRMotor.move_relative(rightInches, -speed);
@@ -31,7 +32,10 @@ void Drive(double leftInches, double rightInches, int speed) {
 }
 
 
-//Turns the robot to the target position.
+/*
+  Turns the robot to the target position
+  not gyro assisted
+*/
 void Driver_Rotate(double turn, int speed) {
   FLMotor.move_relative(turn , speed);
   FRMotor.move_relative(-turn, speed);
@@ -40,9 +44,13 @@ void Driver_Rotate(double turn, int speed) {
 }
 
 
-//Turns the robot to the target position
+/*
+  Turns the robot to the target position
+  is gyro assisted
+*/
 void Rotate(int TargetPos, int speed) {
   bool IsLeft;
+  // Figures out whitch way the robot needs to turn
   if (TargetPos > 0) {
     FLMotor.move(speed);
     FRMotor.move(-speed);
@@ -58,9 +66,17 @@ void Rotate(int TargetPos, int speed) {
     IsLeft = false;
   }
 
+  /* 
+    Lowers the resolution of the gyro and devides the turn in half
+    This gives use some padding so we don't spin indefinitely if we over shoot
+  */
   TargetPos = TargetPos / 2;
   TargetPos = TargetPos + (GyroPos() / 2);
 
+  /* 
+    Keeps use within 180 and -180
+    Remember we divided everything in half so we are working in 180 not 360
+  */
   if (TargetPos > 180) {
     TargetPos = TargetPos - 180;
   }
@@ -68,7 +84,10 @@ void Rotate(int TargetPos, int speed) {
     TargetPos = TargetPos + 180;
   }
 
-
+  /* 
+    We are waiting for our gyro position to equal or surpass our turn
+    then stopping the motors
+  */
   if (IsLeft == true) {
     while (TargetPos >= (GyroPos() / 2)) {
       pros::delay(20);
@@ -89,8 +108,9 @@ void Rotate(int TargetPos, int speed) {
   }
 }
 
-//Function for setting the drive trian breaks.
+// Function for setting the drive trian breaks
 void BrakeDriveTrain() {
+  // Keeps the joistics from over writing the target positions of the motors
   IsBreaking = true;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -104,8 +124,9 @@ void BrakeDriveTrain() {
 }
 
 
-//Function for releasing the drive train breaks.
+// Function for releasing the drive train breaks
 void UnBrakeDriveTrain() {
+  // Re-enables the drive train joistics
   IsBreaking = false;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -114,7 +135,7 @@ void UnBrakeDriveTrain() {
 }
 
 
-//Function for seting the cap flipper side to be the front side.
+// Function for seting the cap flipper side to be the front side
 void SetBackwords() {
   FLMotor.set_reversed(true);
   FRMotor.set_reversed(false);
@@ -124,7 +145,7 @@ void SetBackwords() {
 }
 
 
-//Function for seting the ball shooter side to be the front side.
+// Function for seting the ball shooter side to be the front side
 void SetForwards() {
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
@@ -134,26 +155,30 @@ void SetForwards() {
 }
 
 
-//Thread for all drive train controls.
+// Thread for all drive train controls
 void DriveTrain_fn(void* param) {
   int LeftControls = master.get_analog(ANALOG_LEFT_Y);
   int RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
 
-  //Setting the revering state of the motors.
+  // Setting the revering state of the motors
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
 
   while (true) {
-    //Gets the joistics position and update it's veriable.
+    // Gets the joistics position and update it's veriable
     LeftControls = master.get_analog(ANALOG_LEFT_Y);
     RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
-    //Controls how the motors move.
+    //Controls how the motors move
     if (IsBreaking != true) {
       if (IsForward == true) {
+        /* 
+          Checking if the motors are plugged in 
+          if not then dissabling the oposite one to keep the drive train equal
+        */
         if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
           BLMotor.move(LeftControls);
           BRMotor.move(RightControls);
@@ -168,27 +193,31 @@ void DriveTrain_fn(void* param) {
           FRMotor.move(RightControls);
           BRMotor.move(RightControls);          
         }
+      }
+      else {
+        /* 
+          Checking if the motors are plugged in 
+          if not then dissabling the oposite one to keep the drive train equal
+        */
+        if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
+          BLMotor.move(RightControls);
+          BRMotor.move(LeftControls);
+        }
+        else if (int(pros::c::motor_get_temperature(BLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(BRMotorport)) == 2147483647) {
+          FLMotor.move(RightControls);
+          FRMotor.move(LeftControls);
         }
         else {
-          if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
-            BLMotor.move(RightControls);
-            BRMotor.move(LeftControls);
-          }
-          else if (int(pros::c::motor_get_temperature(BLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(BRMotorport)) == 2147483647) {
-            FLMotor.move(RightControls);
-            FRMotor.move(LeftControls);
-          }
-          else {
-          FLMotor.move(RightControls);
-          BLMotor.move(RightControls);
-          FRMotor.move(LeftControls);
-          BRMotor.move(LeftControls);
-          }
+        FLMotor.move(RightControls);
+        BLMotor.move(RightControls);
+        FRMotor.move(LeftControls);
+        BRMotor.move(LeftControls);
         }
+      }
     }
 
-    //Drive train lock and unlock button.
-    if (master.get_digital_new_press(DIGITAL_UP)) {
+    // Drive train lock and unlock button
+    if (master.get_digital_new_press(DIGITAL_UP) || master.get_digital_new_press(DIGITAL_DOWN)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
       }
@@ -197,19 +226,7 @@ void DriveTrain_fn(void* param) {
       }
     }
 
-    //Drive train break and Rotate 180 button.
-    if (master.get_digital_new_press(DIGITAL_DOWN)) {
-      if (IsBreaking == true) {
-        UnBrakeDriveTrain();
-        //Rotate(1580, 50);
-      }
-      else {
-        BrakeDriveTrain();
-        //Rotate(1580, 50);
-      }
-    }
-
-    //Drive train directional controls.
+    // Drive train directional control buttons
     if (master.get_digital_new_press(DIGITAL_L1)) {
       SetBackwords();
     }
@@ -217,12 +234,12 @@ void DriveTrain_fn(void* param) {
       SetForwards();
     }
 
-    //Rotate 90 to the left.
+    // Rotate 90 to the left
     if (master.get_digital_new_press(DIGITAL_LEFT)) {
         Driver_Rotate(-770, 50);
         pros::delay(1200);
     }
-    //Rotate 90 to the right.
+    // Rotate 90 to the right
     else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
       Driver_Rotate(770, 50);
       pros::delay(1200);

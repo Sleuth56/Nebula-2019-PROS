@@ -337,7 +337,7 @@ void BlueCap() {
   }
 }
 
-//Veriables and functions for the auton selector.
+//Veriables and functions for the auton selector
 int selection = 1;
 const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
 void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
