@@ -15,17 +15,13 @@ void ShooterOff() {
 // Function for shooting two balls at booth of the flags at the same time
 // Not in use yet
 void ShootTwice() {
-    ShooterOn(160);
-    pros::delay(1100);
-    Intake.move(100);
-    pros::delay(300);
-    Intake.move(0);
-    ShooterOn(60);
-    pros::delay(200);
-    Intake.move(100);
-    pros::delay(400);
-    Intake.move(0);
-    ShooterOff();
+  if (IsBreaking == false) {
+    BrakeDriveTrain();
+    pros::delay(100);
+    Drive(-1200, -1200, 100);
+    pros::delay(100);
+    UnBrakeDriveTrain();
+  }
 }
 
 // Thread for all shooter controls
@@ -44,6 +40,10 @@ void Shooter_fn(void* param) {
     else if (HumanTurnOn == true) {
       ShooterOff();
       HumanTurnOn = false;
+    }
+
+    if (partner.get_digital_new_press(DIGITAL_L2)) {
+      ShootTwice();
     }
   }
 }

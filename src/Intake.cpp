@@ -43,9 +43,6 @@ void Intake_fn(void* param) {
         pros::delay(260);
         Intake.move(0);
       }
-      else if (partner.get_digital_new_press(DIGITAL_R2)) {
-        ShootTwice();
-      }
       else {
           Intake.move(IntakeControls);
       }
