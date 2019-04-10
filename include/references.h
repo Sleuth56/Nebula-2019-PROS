@@ -66,6 +66,7 @@ void BrakeDriveTrain();
 void UnBrakeDriveTrain();
 void SetBackwords();
 void SetForwards();
+void Ultrasonic_Drive(int distance, int speed);
 /*
     Blocks the program from continuing until the drive train has
     reached its target position set by the Drive function. 

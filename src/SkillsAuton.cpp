@@ -18,25 +18,9 @@ void SkillsAuton() {
   
   Drive(300, 300, 50);
   Rotate(-85, 30);
-  FRMotor.move(70);
-  BRMotor.move(70);
-  pros::delay(10);
-  FLMotor.move(70);
-  BLMotor.move(70);
-  while ((ultrasonic.get_value()/10) <= 200) {
-    pros::delay(20);
-  }
-  Drive(0, 0, 0);
+  Ultrasonic_Drive(200, 70);
   Rotate(80, 40);
-  FRMotor.move(-40);
-  BRMotor.move(-40);
-  pros::delay(10);
-  FLMotor.move(-40);
-  BLMotor.move(-40);
-  while ((ultrasonic.get_value()/10) <= 17) {
-    pros::delay(20);
-  }
-  Drive(0, 0, 0);
+  Ultrasonic_Drive(17, -40);
   pros::delay(300);
   Drive(300, 300, 40);
   Rotate(-30, 40);

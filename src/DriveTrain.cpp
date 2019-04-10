@@ -31,6 +31,18 @@ void Drive(double leftInches, double rightInches, int speed) {
   } while (!AtDistanceDriveGoal(5));
 }
 
+void Ultrasonic_Drive(int distance, int speed) {
+  FRMotor.move(speed);
+  BRMotor.move(speed);
+  pros::delay(10);
+  FLMotor.move(speed);
+  BLMotor.move(speed);
+  while ((ultrasonic.get_value()/10) <= distance) {
+    pros::delay(20);
+  }
+  Drive(0, 0, 0);
+}
+
 
 /*
   Turns the robot to the target position
