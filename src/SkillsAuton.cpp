@@ -2,6 +2,54 @@
 
 //Auton for skills.
 void SkillsAuton() {
+  Intake.move(200);
+  Drive(2500, 2500, 50);
+  FRMotor.move_relative(1200, 200);
+  BRMotor.move_relative(1200, -200);
+  pros::delay(10);
+  FLMotor.move_relative(1200, 200);
+  BLMotor.move_relative(1200, -200);
+  do {
+  pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Intake.move(0);
+  pros::delay(600);
+  Drive(-3700, -3700, 120);
+  
+  Drive(300, 300, 50);
+  Rotate(-85, 30);
+  FRMotor.move(70);
+  BRMotor.move(70);
+  pros::delay(10);
+  FLMotor.move(70);
+  BLMotor.move(70);
+  while ((ultrasonic.get_value()/10) <= 200) {
+    pros::delay(20);
+  }
+  Drive(0, 0, 0);
+  Rotate(80, 40);
+  FRMotor.move(-40);
+  BRMotor.move(-40);
+  pros::delay(10);
+  FLMotor.move(-40);
+  BLMotor.move(-40);
+  while ((ultrasonic.get_value()/10) <= 17) {
+    pros::delay(20);
+  }
+  Drive(0, 0, 0);
+  pros::delay(300);
+  Drive(300, 300, 40);
+  Rotate(-30, 40);
+  ShooterOn(200);
+  pros::delay(500);
+  Intake.move(100);
+  pros::delay(300);
+  Intake.move(0);
+  ShooterOff();
+}
+
+//Auton for skills.
+void OldSkillsAuton() {
   //Intake on and drive out.
   Intake.move(100);
   Drive(3900, 3900, 110);

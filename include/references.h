@@ -25,6 +25,7 @@ extern pros::Controller partner;
 extern pros::ADIGyro gyro;
 extern pros::ADIDigitalIn TopIntakeSensor;
 extern pros::ADIDigitalIn BottomIntakeSensor;
+extern pros::ADIUltrasonic ultrasonic;
 
 // These are information veriables that tell you when things are happening on the robot
 extern bool IsBreaking;

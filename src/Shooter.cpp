@@ -18,8 +18,12 @@ void ShootTwice() {
   if (IsBreaking == false) {
     BrakeDriveTrain();
     pros::delay(100);
-    Drive(-1200, -1200, 100);
-    pros::delay(100);
+    FRMotor.move_relative(-1200, 100);
+    BRMotor.move_relative(-1200, 100);
+    pros::delay(10);
+    FLMotor.move_relative(-1200, 100);
+    BLMotor.move_relative(-1200, 100);
+    pros::delay(1000);
     UnBrakeDriveTrain();
   }
 }
