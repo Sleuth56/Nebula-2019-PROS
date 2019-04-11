@@ -6,7 +6,6 @@
  */
 
 void RedFlag() {
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   /*
     Intake on
     Drive Forward
@@ -108,7 +107,6 @@ void RedFlag() {
   Rotate(-50, 50);
   Drive(-2200, -2200, 150);
   Arm.move_relative(-1000, 200);
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 void RedCap() {
@@ -175,7 +173,6 @@ void RedCap() {
 }
 
 void BlueFlag() {
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   /*
     Intake on
     Drive Forward
@@ -185,11 +182,11 @@ void BlueFlag() {
   Intake.move(600);
   Drive(3500, 3500, 120);
 
-  FRMotor.move_relative(-3700, 120);
-  BRMotor.move_relative(-3700, -120);
+  FRMotor.move_relative(-3600, 120);
+  BRMotor.move_relative(-3600, -120);
   pros::delay(10);
-  FLMotor.move_relative(-3700, 120);
-  BLMotor.move_relative(-3700, -120);
+  FLMotor.move_relative(-3600, 120);
+  BLMotor.move_relative(-3600, -120);
 
   while(BottomIntakeSensor.get_value() == 0 && TopIntakeSensor.get_value() == 0) {
     pros::delay(20);
@@ -206,14 +203,11 @@ void BlueFlag() {
     Drive forward off the wall
     Turn to face the flags
   */
-  Intake.move(-200);
-  pros::delay(100);
-  Intake.move(0);
   ShooterOn(200);
-  pros::delay(400);
+  pros::delay(600);
 
   Drive(200, 200, 30);
-  Rotate(80, 50);
+  Rotate(78, 50);
 
 
   /*
@@ -245,11 +239,11 @@ void BlueFlag() {
     Turn and hit the bottom flag
     Arm down
   */
-  Rotate(-75, 100);
+  Rotate(-60, 100);
 
   Arm.move_relative(1100, 100);
   pros::delay(800);
-  Rotate(-70, 50);
+  Rotate(-55, 50);
 
   Arm.move_relative(-1100, 100);
   pros::delay(500);
@@ -261,13 +255,13 @@ void BlueFlag() {
     Arm up to flip the cap
     Arm up to flag level
   */
-  Rotate(-86, 100);
+  Rotate(-93, 100);
 
-  Drive(-800, -800, 100);
-  Arm.move_relative(1200, 80);
-  pros::delay(800);
-  // Arm.move_relative(400, 50);
-  // pros::delay(150);
+  Drive(-900, -900, 100);
+  Arm.move_relative(800, 80);
+  pros::delay(500);
+  Arm.move_relative(400, 50);
+  pros::delay(150);
 
 
   /*
@@ -276,9 +270,8 @@ void BlueFlag() {
     Hit the bottom flag
     Arm down
   */
-  Rotate(45, 50);
-  Drive(-2200, -2200, 200);
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  Rotate(50, 50);
+  Drive(-2200, -2200, 150);
   Arm.move_relative(-1000, 200);
 }
 

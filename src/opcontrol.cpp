@@ -1,7 +1,6 @@
 #include "main.h"
 
 void opcontrol() {
-  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   // Starts all the functions for controlling the robot
   pros::Task Arm (Arm_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
   pros::Task Intake (Intake_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
