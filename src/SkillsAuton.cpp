@@ -18,12 +18,12 @@ void SkillsAuton() {
   
   Drive(300, 300, 50);
   Rotate(-85, 30);
-  Ultrasonic_Drive(200, 70);
+  Ultrasonic_Drive(190, 70);
   Rotate(80, 40);
-  Ultrasonic_Drive(17, -40);
+  Ultrasonic_Drive(19, -40);
   pros::delay(300);
   Drive(300, 300, 40);
-  Rotate(-30, 40);
+  Rotate(-35, 40);
   ShooterOn(200);
   pros::delay(500);
   Intake.move(100);

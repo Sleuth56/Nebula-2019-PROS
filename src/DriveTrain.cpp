@@ -37,8 +37,15 @@ void Ultrasonic_Drive(int distance, int speed) {
   pros::delay(10);
   FLMotor.move(speed);
   BLMotor.move(speed);
-  while ((ultrasonic.get_value()/10) <= distance) {
-    pros::delay(20);
+  if (speed < 0) {
+    while ((ultrasonic.get_value()/10) >= distance) {
+      pros::delay(20);
+    }
+  }
+  else {
+    while ((ultrasonic.get_value()/10) <= distance) {
+      pros::delay(20);
+    }
   }
   Drive(0, 0, 0);
 }
