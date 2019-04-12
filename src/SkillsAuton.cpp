@@ -18,9 +18,9 @@ void SkillsAuton() {
   
   Drive(300, 300, 50);
   Rotate(-85, 30);
-  Ultrasonic_Drive(200, 70);
+  Back_Ultrasonic_Drive(200, 70);
   Rotate(80, 40);
-  Ultrasonic_Drive(17, -40);
+  Back_Ultrasonic_Drive(18, -40);
   pros::delay(300);
   Drive(300, 300, 40);
   Rotate(-30, 40);

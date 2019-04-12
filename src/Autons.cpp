@@ -180,24 +180,10 @@ void BlueFlag() {
     Drive Back to the starting wall
   */
   Intake.move(600);
-  Drive(3500, 3500, 120);
-
-  FRMotor.move_relative(-3600, 120);
-  BRMotor.move_relative(-3600, -120);
-  pros::delay(10);
-  FLMotor.move_relative(-3600, 120);
-  BLMotor.move_relative(-3600, -120);
-
-  while(BottomIntakeSensor.get_value() == 0 && TopIntakeSensor.get_value() == 0) {
-    pros::delay(20);
-  }
+  Back_Ultrasonic_Drive(127, 120);
+  pros::delay(700);
   Intake.move(0);
-
-  do {
-  pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
-
+  Back_Ultrasonic_Drive(18, -120);
   /*
     Shooter on full power
     Drive forward off the wall
@@ -206,10 +192,8 @@ void BlueFlag() {
   ShooterOn(200);
   pros::delay(600);
 
-  Drive(200, 200, 30);
+  Back_Ultrasonic_Drive(31, 30);
   Rotate(78, 50);
-
-
   /*
     Drive forward
     Shoot the top flag
@@ -217,14 +201,14 @@ void BlueFlag() {
     Shoot the middle flag
     Shooter off
   */
-  Drive(1300, 1300, 100);
+  Front_Ultrasonic_Drive(57, 100);
 
   pros::delay(300);
   Intake.move(100);
   pros::delay(300);
   Intake.move(0);
 
-  Drive(1100, 1100, 100);
+  Front_Ultrasonic_Drive(42, 100);
 
   pros::delay(300);
   Intake.move(100);
@@ -232,47 +216,22 @@ void BlueFlag() {
   Intake.move(0);
   ShooterOff();
 
+  Front_Ultrasonic_Drive(20, 100);
+  pros::delay(300);
+  Front_Ultrasonic_Drive(40, -100);
 
-  /*
-    Turn
-    Raise the arm to flag level
-    Turn and hit the bottom flag
-    Arm down
-  */
-  Rotate(-60, 100);
+  Rotate(-78, 50);
+  Back_Ultrasonic_Drive(80, 100);
+  Rotate(78, 50);
 
   Arm.move_relative(1100, 100);
   pros::delay(800);
-  Rotate(-55, 50);
-
   Arm.move_relative(-1100, 100);
-  pros::delay(500);
 
+  Rotate(-68, 50);
 
-  /*
-    Turn face the cap with two balls on it
-    Drive forward
-    Arm up to flip the cap
-    Arm up to flag level
-  */
-  Rotate(-93, 100);
-
-  Drive(-900, -900, 100);
-  Arm.move_relative(800, 80);
-  pros::delay(500);
-  Arm.move_relative(400, 50);
-  pros::delay(150);
-
-
-  /*
-    Turn to face the center bottom flag
-    Drive forwards
-    Hit the bottom flag
-    Arm down
-  */
-  Rotate(50, 50);
-  Drive(-2200, -2200, 150);
-  Arm.move_relative(-1000, 200);
+  Drive(2000, 2000, 100);
+  Drive(700, 700, -100);
 }
 
 void BlueCap() {

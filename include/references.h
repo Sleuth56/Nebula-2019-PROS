@@ -25,7 +25,8 @@ extern pros::Controller partner;
 extern pros::ADIGyro gyro;
 extern pros::ADIDigitalIn TopIntakeSensor;
 extern pros::ADIDigitalIn BottomIntakeSensor;
-extern pros::ADIUltrasonic ultrasonic;
+extern pros::ADIUltrasonic front_ultrasonic;
+extern pros::ADIUltrasonic back_ultrasonic;
 
 // These are information veriables that tell you when things are happening on the robot
 extern bool IsBreaking;
@@ -66,7 +67,8 @@ void BrakeDriveTrain();
 void UnBrakeDriveTrain();
 void SetBackwords();
 void SetForwards();
-void Ultrasonic_Drive(int distance, int speed);
+void Front_Ultrasonic_Drive(int distance, int speed);
+void Back_Ultrasonic_Drive(int distance, int speed);
 /*
     Blocks the program from continuing until the drive train has
     reached its target position set by the Drive function. 

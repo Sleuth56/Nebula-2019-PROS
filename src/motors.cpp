@@ -18,7 +18,8 @@ pros::Controller partner (CONTROLLER_PARTNER);
 pros::ADIGyro gyro (GYRO_PORT);
 pros::ADIDigitalIn TopIntakeSensor(TopIntakeSensorPort);
 pros::ADIDigitalIn BottomIntakeSensor(BottomIntakeSensorPort);
-pros::ADIUltrasonic ultrasonic (1, 2);
+pros::ADIUltrasonic back_ultrasonic (1, 2);
+pros::ADIUltrasonic front_ultrasonic (3, 4);
 
 // Defining the IsParking veriable
 bool IsParking = true;

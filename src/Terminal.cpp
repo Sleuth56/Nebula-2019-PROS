@@ -3,6 +3,6 @@
 // This Thread is responsible for printing out diagnostic data to the terminal
 void Diagnostics_fn(void* param) {
     while (true) {
-        printf("%d\n", (ultrasonic.get_value()/10));
+        printf("Front:%d, Back:%d\n", (front_ultrasonic.get_value()/10), (back_ultrasonic.get_value()/10));
     }
 }
