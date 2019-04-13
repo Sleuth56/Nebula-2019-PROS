@@ -39,12 +39,12 @@ void Front_Ultrasonic_Drive(int distance, int speed) {
   FLMotor.move(speed);
   BLMotor.move(speed);
   if (speed < 0) {
-    while ((front_ultrasonic.get_value()/10) >= distance) {
+    while ((front_ultrasonic.get_value()/10) <= distance) {
       pros::delay(20);
     }    
   }
   else {
-    while ((front_ultrasonic.get_value()/10) <= distance) {
+    while ((front_ultrasonic.get_value()/10) >= distance) {
       pros::delay(20);
     }
   }
