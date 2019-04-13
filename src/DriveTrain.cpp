@@ -33,42 +33,50 @@ void Drive(double leftInches, double rightInches, int speed) {
 
 
 void Front_Ultrasonic_Drive(int distance, int speed) {
+  double ddistance = distance / 2;
   FRMotor.move(speed);
   BRMotor.move(speed);
   pros::delay(10);
   FLMotor.move(speed);
   BLMotor.move(speed);
   if (speed < 0) {
-    while ((front_ultrasonic.get_value()/10) <= distance) {
+    while ((front_ultrasonic.get_value()/20) <= ddistance) {
       pros::delay(20);
     }    
   }
   else {
-    while ((front_ultrasonic.get_value()/10) >= distance) {
+    while ((front_ultrasonic.get_value()/20) >= ddistance) {
       pros::delay(20);
     }
   }
-  Drive(0, 0, 0);
+  FLMotor.move(0);
+  FRMotor.move(0);
+  BLMotor.move(0);
+  BRMotor.move(0);
 }
 
 
 void Back_Ultrasonic_Drive(int distance, int speed) {
+  double ddistance = distance / 2;
   FRMotor.move(speed);
   BRMotor.move(speed);
   pros::delay(10);
   FLMotor.move(speed);
   BLMotor.move(speed);
   if (speed < 0) {
-    while ((back_ultrasonic.get_value()/10) >= distance) {
-      pros::delay(20);
-    }    
-  }
-  else {
-    while ((back_ultrasonic.get_value()/10) <= distance) {
+    while ((back_ultrasonic.get_value()/20) >= ddistance) {
       pros::delay(20);
     }
   }
-  Drive(0, 0, 0);
+  else {
+    while ((back_ultrasonic.get_value()/20) <= ddistance) {
+      pros::delay(20);
+    }
+  }
+  FLMotor.move(0);
+  FRMotor.move(0);
+  BLMotor.move(0);
+  BRMotor.move(0);
 }
 
 
