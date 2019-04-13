@@ -1,0 +1,15 @@
+back 127
+back 18
+back 31
+turn 90
+front 57
+front 42
+front 20
+front 40
+turn 90
+back 80
+turn 90
+flip cap
+turn 130
+drive forwards
+drive back

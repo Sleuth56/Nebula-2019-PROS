@@ -6,6 +6,7 @@
  */
 
 void RedFlag() {
+  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   /*
     Intake on
     Drive Forward
@@ -13,35 +14,25 @@ void RedFlag() {
     Drive Back to the starting wall
   */
   Intake.move(200);
-  Drive(3500, 3500, 120);
+  Drive(3400, 3400, 120);
+  pros::delay(200);
   Intake.move(0);
-  pros::delay(500);
-  FRMotor.move_relative(-3600, 120);
-  BRMotor.move_relative(-3600, -120);
-  pros::delay(10);
-  FLMotor.move_relative(-3600, 120);
-  BLMotor.move_relative(-3600, -120);
-
-  // while(BottomIntakeSensor.get_value() == 0 && TopIntakeSensor.get_value() == 0) {
-  //   pros::delay(20);
-  // }
-  // Intake.move(0);
-
-  do {
-  pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-
+  pros::delay(100);
+  Drive(-3500, -3500, 120);
 
   /*
     Shooter on full power
     Drive forward off the wall
     Turn to face the flags
   */
+  Intake.move(-200);
+  pros::delay(100);
+  Intake.move(0);
   ShooterOn(200);
-  pros::delay(600);
+  pros::delay(400);
 
   Drive(200, 200, 30);
-  Rotate(-77, 50);
+  Rotate(-80, 50);
 
 
   /*
@@ -51,14 +42,14 @@ void RedFlag() {
     Shoot the middle flag
     Shooter off
   */
-  Drive(1650, 1650, 100);
+  Drive(1300, 1300, 100);
 
   pros::delay(300);
   Intake.move(100);
   pros::delay(300);
   Intake.move(0);
 
-  Drive(1050, 1050, 100);
+  Drive(1300, 1300, 100);
 
   pros::delay(300);
   Intake.move(100);
@@ -66,47 +57,20 @@ void RedFlag() {
   Intake.move(0);
   ShooterOff();
 
-
-  /*
-    Turn
-    Raise the arm to flag level
-    Turn and hit the bottom flag
-    Arm down
-  */
-  Rotate(80, 100);
-
-  Arm.move_relative(1100, 100);
-  pros::delay(800);
-  Rotate(40, 50);
-
-  Arm.move_relative(-1100, 100);
-  pros::delay(500);
-
-
-  /*
-    Turn face the cap with two balls on it
-    Drive forward
-    Arm up to flip the cap
-    Arm up to flag level
-  */
-  Rotate(96, 100);
+  Rotate(-10, 30);
+  Drive(1000, 900, 100);
 
   Drive(-900, -900, 100);
-  Arm.move_relative(800, 80);
-  pros::delay(500);
-  Arm.move_relative(350, 50);
-  pros::delay(150);
 
+  Rotate(84, 50);
 
-  /*
-    Turn to face the center bottom flag
-    Drive forwards
-    Hit the bottom flag
-    Arm down
-  */
-  Rotate(-50, 50);
-  Drive(-2200, -2200, 150);
-  Arm.move_relative(-1000, 200);
+  Drive(1200, 1200, 100);
+
+  Rotate(-73, 50);
+  Drive(-500, -500, 100);
+  Arm.move_relative(900, 100);
+  pros::delay(800);
+  Arm.move_relative(-900, 100);
 }
 
 void RedCap() {
@@ -117,9 +81,10 @@ void RedCap() {
     Shoot the top middle flag
     Shooter off
   */
-  ShooterOn(150);
+  ShooterOn(120);
   Drive(400, 400, 60);
   Rotate(-58, 30);
+  pros::delay(300);
   Intake.move(100);
   pros::delay(500);
   Intake.move(0);
@@ -168,32 +133,40 @@ void RedCap() {
   */
   if (IsParking == true) {
     Rotate(-80, 50);
-    Drive(2100, 2100, 100);
+    Drive(2200, 2200, 100);
   }
 }
 
 void BlueFlag() {
+  Arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   /*
     Intake on
     Drive Forward
     Get the ball from under the cap
     Drive Back to the starting wall
   */
-  Intake.move(600);
-  Back_Ultrasonic_Drive(127, 120);
-  pros::delay(700);
+  Intake.move(200);
+  Drive(3400, 3400, 120);
+  pros::delay(200);
   Intake.move(0);
-  Back_Ultrasonic_Drive(18, -120);
+  pros::delay(100);
+  Drive(-3500, -3500, 120);
+
   /*
     Shooter on full power
     Drive forward off the wall
     Turn to face the flags
   */
+  Intake.move(-200);
+  pros::delay(100);
+  Intake.move(0);
   ShooterOn(200);
-  pros::delay(600);
+  pros::delay(400);
 
-  Back_Ultrasonic_Drive(31, 30);
+  Drive(200, 200, 30);
   Rotate(78, 50);
+
+
   /*
     Drive forward
     Shoot the top flag
@@ -201,14 +174,14 @@ void BlueFlag() {
     Shoot the middle flag
     Shooter off
   */
-  Front_Ultrasonic_Drive(57, 100);
+  Drive(1300, 1300, 100);
 
   pros::delay(300);
   Intake.move(100);
   pros::delay(300);
   Intake.move(0);
 
-  Front_Ultrasonic_Drive(42, 100);
+  Drive(1300, 1300, 100);
 
   pros::delay(300);
   Intake.move(100);
@@ -216,22 +189,20 @@ void BlueFlag() {
   Intake.move(0);
   ShooterOff();
 
-  Front_Ultrasonic_Drive(20, 100);
-  pros::delay(300);
-  Front_Ultrasonic_Drive(40, -100);
+  Rotate(8, 30);
+  Drive(1000, 900, 100);
 
-  Rotate(-78, 50);
-  Back_Ultrasonic_Drive(80, 100);
-  Rotate(78, 50);
+  Drive(-900, -900, 100);
 
-  Arm.move_relative(1100, 100);
+  Rotate(-82, 50);
+
+  Drive(1800, 1800, 100);
+
+  Rotate(75, 50);
+
+  Arm.move_relative(900, 100);
   pros::delay(800);
-  Arm.move_relative(-1100, 100);
-
-  Rotate(-68, 50);
-
-  Drive(2000, 2000, 100);
-  Drive(700, 700, -100);
+  Arm.move_relative(-900, 100);
 }
 
 void BlueCap() {
@@ -242,7 +213,7 @@ void BlueCap() {
     Shoot the top middle flag
     Shooter off
   */
-  ShooterOn(150);
+  ShooterOn(120);
   Drive(400, 400, 60);
   Rotate(63, 30);
   Intake.move(100);
@@ -261,6 +232,7 @@ void BlueCap() {
   Arm.move_relative(1100, 100);
   pros::delay(800);
   Arm.move_relative(-1100, 100);
+  pros::delay(500);
 
 
   /*
@@ -281,7 +253,7 @@ void BlueCap() {
   */
   Intake.move(100);
   Drive(1400, 1400, 100);
-  Drive(-1000, -1000, 100);
+  Drive(-1100, -1100, 100);
   Intake.move(0);
 
 
@@ -292,7 +264,7 @@ void BlueCap() {
   */
   if (IsParking == true) {
     Rotate(80, 50);
-    Drive(2100, 2100, 100);
+    Drive(2200, 2200, 100);
   }
 }
 
