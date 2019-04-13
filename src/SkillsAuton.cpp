@@ -2,34 +2,77 @@
 
 //Auton for skills.
 void SkillsAuton() {
-  Intake.move(200);
-  Drive(2500, 2500, 50);
-  FRMotor.move_relative(1200, 200);
-  BRMotor.move_relative(1200, -200);
-  pros::delay(10);
-  FLMotor.move_relative(1200, 200);
-  BLMotor.move_relative(1200, -200);
-  do {
-  pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  Intake.move(0);
-  pros::delay(600);
-  Drive(-3700, -3700, 120);
-  
-  Drive(300, 300, 50);
-  Rotate(-85, 30);
-  Back_Ultrasonic_Drive(200, 70);
-  Rotate(80, 40);
-  Back_Ultrasonic_Drive(18, -40);
+  /*
+    Shooter on
+    Drive forward
+    Turn to face the middle flag
+    Shoot the top middle flag
+    Shooter off
+  */
+  ShooterOn(140);
+  Drive(400, 400, 60);
+  Rotate(-60, 30);
   pros::delay(300);
-  Drive(300, 300, 40);
-  Rotate(-30, 40);
-  ShooterOn(200);
-  pros::delay(500);
   Intake.move(100);
-  pros::delay(300);
+  pros::delay(500);
   Intake.move(0);
   ShooterOff();
+
+
+  /*
+    Turn the arm twords the far cap
+    Drive forwards
+    Flip the cap
+  */
+  Rotate(-86, 50);
+  Drive(-3000, -3000, 130);
+  Arm.move_relative(1100, 100);
+  pros::delay(800);
+  Arm.move_relative(-1100, 100);
+
+
+  /*
+    Turn a little
+    Drive forwards
+    Turn to face the cap with the ball under it
+  */
+  Rotate(20, 50);
+  Drive(1500, 1500, 100);
+  Rotate(125, 50);
+
+
+  /*
+    Intake on
+    Drive forwards
+    Get the ball from under the cap
+    Drive back to prepare to park on the platform
+  */
+  Intake.move(100);
+  Drive(1400, 1400, 100);
+  Intake.move(100);
+  Drive(-900, -900, 100);
+  Intake.move(0);
+
+
+  /*
+    If IsParking is true
+    Turn 90 twords the platform
+    Drive up onto the alliance platform
+  */
+  Rotate(-80, 50);
+  Drive(2200, 2200, 100);
+
+  Rotate(-80, 50);
+  Front_Ultrasonic_Drive(8, 70);
+  pros::delay(400);
+  Front_Ultrasonic_Drive(12, -50);
+  pros::delay(400);
+  Rotate(80, 50);
+  Back_Ultrasonic_Drive(190 , 70);
+  pros::delay(400);
+  Rotate(82, 50);
+  Back_Ultrasonic_Drive(18, -70);
+  pros::delay(400);
 }
 
 //Auton for skills.
