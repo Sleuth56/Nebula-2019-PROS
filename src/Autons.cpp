@@ -42,14 +42,14 @@ void RedFlag() {
     Shoot the middle flag
     Shooter off
   */
-  Drive(1300, 1300, 100);
+  Drive(1500, 1500, 100);
 
   pros::delay(300);
   Intake.move(100);
   pros::delay(300);
   Intake.move(0);
 
-  Drive(1300, 1300, 100);
+  Drive(1100, 1100, 100);
 
   pros::delay(300);
   Intake.move(100);
@@ -57,17 +57,15 @@ void RedFlag() {
   Intake.move(0);
   ShooterOff();
 
-  Rotate(-10, 30);
-  Drive(1000, 900, 100);
+  Rotate(-8, 30);
+  Drive(1400, 1200, 100);
 
-  Drive(-900, -900, 100);
+  Drive(-2000, -2000, 100);
 
-  Rotate(84, 50);
+  Rotate(-84, 50);
 
-  Drive(1200, 1200, 100);
+  Drive(-1000, -1000, 100);
 
-  Rotate(-73, 50);
-  Drive(-500, -500, 100);
   Arm.move_relative(900, 100);
   pros::delay(800);
   Arm.move_relative(-900, 100);
@@ -81,7 +79,7 @@ void RedCap() {
     Shoot the top middle flag
     Shooter off
   */
-  ShooterOn(120);
+  ShooterOn(130);
   Drive(400, 400, 60);
   Rotate(-58, 30);
   pros::delay(300);
@@ -164,7 +162,7 @@ void BlueFlag() {
   pros::delay(400);
 
   Drive(200, 200, 30);
-  Rotate(78, 50);
+  Rotate(80, 50);
 
 
   /*
@@ -190,15 +188,13 @@ void BlueFlag() {
   ShooterOff();
 
   Rotate(8, 30);
-  Drive(1000, 900, 100);
+  Drive(1400, 1300, 100);
 
-  Drive(-900, -900, 100);
+  Drive(-2000, -2000, 100);
 
-  Rotate(-82, 50);
+  Rotate(82, 50);
 
-  Drive(1800, 1800, 100);
-
-  Rotate(75, 50);
+  Drive(-1000, -1000, 100);
 
   Arm.move_relative(900, 100);
   pros::delay(800);
