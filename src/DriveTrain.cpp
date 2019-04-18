@@ -53,6 +53,9 @@ void Front_Ultrasonic_Drive(int distance, int speed) {
   FRMotor.move(0);
   BLMotor.move(0);
   BRMotor.move(0);
+  BrakeDriveTrain();
+  pros::delay(400);
+  UnBrakeDriveTrain();
 }
 
 
@@ -77,6 +80,9 @@ void Back_Ultrasonic_Drive(int distance, int speed) {
   FRMotor.move(0);
   BLMotor.move(0);
   BRMotor.move(0);
+  BrakeDriveTrain();
+  pros::delay(400);
+  UnBrakeDriveTrain();
 }
 
 
@@ -284,12 +290,12 @@ void DriveTrain_fn(void* param) {
 
     // Rotate 90 to the left
     if (master.get_digital_new_press(DIGITAL_LEFT)) {
-        Driver_Rotate(-770, 50);
+        Driver_Rotate(-770, 80);
         pros::delay(1200);
     }
     // Rotate 90 to the right
     else if (master.get_digital_new_press(DIGITAL_RIGHT)) {
-      Driver_Rotate(770, 50);
+      Driver_Rotate(770, 80);
       pros::delay(1200);
     }
   }
