@@ -88,6 +88,7 @@ void RedCap();
 void BlueFlag();
 void BlueCap();
 void SkillsAuton();
+void IffySkillsAuton();
 
 
 void LCDScriptExecute();
