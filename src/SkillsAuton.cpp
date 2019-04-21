@@ -27,6 +27,7 @@ void SkillsAuton() {
   BRMotor.move(0);
 
   /*
+    Ball down
     Shooter on full power
     Drive forward off the wall
     Turn to face the flags
@@ -64,6 +65,13 @@ void SkillsAuton() {
   Intake.move(0);
   ShooterOff();
 
+  /*
+    A little correction turn
+    Drive forward hit the bottom flag
+    Drive Back
+    Turn
+    Back into wall
+  */
   Rotate(-12, 30);
   Drive(1400, 1200, 100);
 
@@ -82,12 +90,25 @@ void SkillsAuton() {
   FRMotor.move(0);
   BRMotor.move(0);
 
+  /*
+    Drive back into cap
+    Flip cap
+  */
   Drive(-1500, -1500, 100);
 
   Arm.move_relative(800, 80);
   pros::delay(800);
   Arm.move_relative(-800, 80);
 
+
+  /*
+    Drive into wall slowly 
+    Pull back off of the wall
+    Turn
+    Drive forwards
+    Turn
+    Back into the wall
+  */
   FLMotor.move(60);
   BLMotor.move(60);
   pros::delay(10);
@@ -115,13 +136,22 @@ void SkillsAuton() {
   FRMotor.move(0);
   BRMotor.move(0);
 
+
+  /*
+    Intake on just in case of a ball
+    Drive forwards onto the center platform
+    Intake off
+  */
   Intake.move(100);
   Drive(6000, 6000, 150);
   Intake.move(0);
 }
 
 
-//Auton for skills.
+/*
+  Auton for skills verry iffy
+  only used if the other one works
+*/
 void IffySkillsAuton() {
   /*
     Shooter on
@@ -141,8 +171,8 @@ void IffySkillsAuton() {
 
 
   /*
-    Turn the arm twords the far cap
-    Drive forwards
+    Turn the arm twards the far cap
+    Drive back
     Flip the cap
   */
   Rotate(-86, 50);
@@ -175,7 +205,7 @@ void IffySkillsAuton() {
 
 
   /*
-    Turn 90 twords the platform
+    Turn 90 twards the platform
     Drive up onto the alliance platform
   */
   Rotate(-80, 50);

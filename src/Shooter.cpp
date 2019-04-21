@@ -12,9 +12,8 @@ void ShooterOff() {
   ShooterOn(0);
 }
 
-// Function for shooting two balls at booth of the flags at the same time
-// Not in use yet
-void ShootTwice() {
+// Function for backing up from the middle flag to the top flag
+void BackToTopFlag() {
   if (IsBreaking == false) {
     BrakeDriveTrain();
     pros::delay(100);
@@ -47,7 +46,7 @@ void Shooter_fn(void* param) {
     }
 
     if (partner.get_digital_new_press(DIGITAL_L2)) {
-      ShootTwice();
+      BackToTopFlag();
     }
   }
 }

@@ -20,6 +20,3 @@ pros::ADIDigitalIn TopIntakeSensor(TopIntakeSensorPort);
 pros::ADIDigitalIn BottomIntakeSensor(BottomIntakeSensorPort);
 pros::ADIUltrasonic back_ultrasonic (1, 2);
 pros::ADIUltrasonic front_ultrasonic (3, 4);
-
-// Defining the IsParking veriable
-bool IsParking = true;

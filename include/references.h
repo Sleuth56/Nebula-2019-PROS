@@ -56,7 +56,7 @@ void Intake_fn(void* param);
 void Shooter_fn(void* param);
 void ShooterOn(int velocity = 200);
 void ShooterOff();
-void ShootTwice();
+void BackToTopFlag();
 
 
 // Functions for DriveTrain.cpp
@@ -67,8 +67,9 @@ void BrakeDriveTrain();
 void UnBrakeDriveTrain();
 void SetBackwords();
 void SetForwards();
-void Front_Ultrasonic_Drive(int distance, int speed);
-void Back_Ultrasonic_Drive(int distance, int speed);
+void Front_Ultrasonic_Drive(double distance, int speed);
+void Back_Ultrasonic_Drive(double distance, int speed);
+
 /*
     Blocks the program from continuing until the drive train has
     reached its target position set by the Drive function. 

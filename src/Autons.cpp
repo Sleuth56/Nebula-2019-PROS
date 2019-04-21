@@ -1,8 +1,11 @@
 #include "main.h"
 
+// Controls wether our autons park or not
+bool IsParking = true;
+
 /**
-  Code for all the game autons.
-  Skills has it's own file.
+  Code for all in game autons.
+  Skills auton is in SkillsAuton.cpp.
  */
 
 void RedFlag() {
@@ -21,6 +24,7 @@ void RedFlag() {
   Drive(-3500, -3500, 120);
 
   /*
+    Intake down
     Shooter on full power
     Drive forward off the wall
     Turn to face the flags
@@ -57,6 +61,14 @@ void RedFlag() {
   Intake.move(0);
   ShooterOff();
 
+  /*
+    Turn to miss the bottom flag
+    Drive Forwards
+    Drive Back
+    Turn to allign with the cap
+    Drive back
+    Flip the cap
+  */
   Rotate(-8, 30);
   Drive(1400, 1200, 100);
 
@@ -75,8 +87,8 @@ void RedCap() {
   /*
     Shooter on
     Drive forward
-    Turn to face the middle flag
-    Shoot the top middle flag
+    Turn to face the middle flags
+    Shoot the one of the middle flags
     Shooter off
   */
   ShooterOn(130);
@@ -90,7 +102,7 @@ void RedCap() {
 
 
   /*
-    Turn the arm twords the far cap
+    Turn the arm towards the far cap
     Drive forwards
     Flip the cap
   */
@@ -126,7 +138,7 @@ void RedCap() {
 
   /*
     If IsParking is true
-    Turn 90 twords the platform
+    Turn 90 towards the platform
     Drive up onto the alliance platform
   */
   if (IsParking == true) {
@@ -187,6 +199,14 @@ void BlueFlag() {
   Intake.move(0);
   ShooterOff();
 
+  /*
+    Turn to miss the bottom flag
+    Drive Forwards
+    Drive Back
+    Turn to allign with the cap
+    Drive back
+    Flip the cap
+  */
   Rotate(8, 30);
   Drive(1400, 1300, 100);
 
@@ -219,7 +239,7 @@ void BlueCap() {
 
 
   /*
-    Turn the arm twords the far cap
+    Turn the arm towards the far cap
     Drive forwards
     Flip the cap
   */
@@ -255,7 +275,7 @@ void BlueCap() {
 
   /*
     If IsParking is true
-    Turn 90 twords the platform
+    Turn 90 towards the platform
     Drive up onto the alliance platform
   */
   if (IsParking == true) {
@@ -265,7 +285,7 @@ void BlueCap() {
 }
 
 //Veriables and functions for the auton selector
-int selection = 4;
-const char *titles[] = {"                     Red Flag", "                     Red Cap", "                     Blue Flag", "                     Blue Cap","                   Skills Auton"};
-void (*scripts[])() = {&RedFlag, &RedCap, &BlueFlag, &BlueCap,  &SkillsAuton};
+int selection = 1;
+const char *titles[] = {"                     Red Flag", "                     Red Cap", "                   Skills Auton", "                     Blue Cap","                     Blue Flag"};
+void (*scripts[])() = {&RedFlag, &RedCap, &SkillsAuton, &BlueCap,  &BlueFlag};
 void LCDScriptExecute() { scripts[selection](); }

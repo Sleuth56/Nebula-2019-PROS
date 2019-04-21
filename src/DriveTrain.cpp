@@ -7,7 +7,7 @@ bool IsForward = true;
 
 /*
     Blocks the program from continuing until the drive train has
-    reached its target position set by the Drive function
+    reached its target position. Used for autons.
 */
 bool AtDistanceDriveGoal(int threshold) {
   return (abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold) &&(abs(FLMotor.get_position() - FLMotor.get_target_position()) < threshold);
@@ -19,7 +19,7 @@ int GyroPos() {
 }
 
 
-// Moves the drive train forwards and backwards
+// Moves the drive train forwards or backwards
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
   BRMotor.move_relative(rightInches, -speed);
@@ -31,55 +31,66 @@ void Drive(double leftInches, double rightInches, int speed) {
   } while (!AtDistanceDriveGoal(5));
 }
 
-
-void Front_Ultrasonic_Drive(int distance, int speed) {
-  double ddistance = distance / 2;
+// Uses the front ultrasonic sensor to drive to a set distance
+void Front_Ultrasonic_Drive(double distance, int speed) {
+  distance = distance / 2;
   FRMotor.move(speed);
   BRMotor.move(speed);
   pros::delay(10);
   FLMotor.move(speed);
   BLMotor.move(speed);
+  // Tests if we are driving forwards or backwards
   if (speed < 0) {
-    while ((front_ultrasonic.get_value()/20) <= ddistance) {
+    // Waits until we are at or under the target distance
+    while ((front_ultrasonic.get_value()/20) <= distance) {
       pros::delay(20);
     }    
   }
   else {
-    while ((front_ultrasonic.get_value()/20) >= ddistance) {
+    // Waits until we are at or over the target distance
+    while ((front_ultrasonic.get_value()/20) >= distance) {
       pros::delay(20);
     }
   }
+  // Stops the drive train
   FLMotor.move(0);
   FRMotor.move(0);
   BLMotor.move(0);
   BRMotor.move(0);
+
+  // Stops the drive train from coasting
   BrakeDriveTrain();
   pros::delay(400);
   UnBrakeDriveTrain();
 }
 
-
-void Back_Ultrasonic_Drive(int distance, int speed) {
-  double ddistance = distance / 2;
+// Uses the back ultrasonic sensor to drive to a set distance
+void Back_Ultrasonic_Drive(double distance, int speed) {
+  distance = distance / 2;
   FRMotor.move(speed);
   BRMotor.move(speed);
   pros::delay(10);
   FLMotor.move(speed);
   BLMotor.move(speed);
   if (speed < 0) {
-    while ((back_ultrasonic.get_value()/20) >= ddistance) {
+    // Waits until we are at or over the target distance
+    while ((back_ultrasonic.get_value()/20) >= distance) {
       pros::delay(20);
     }
   }
   else {
-    while ((back_ultrasonic.get_value()/20) <= ddistance) {
+    // Waits until we are at or under the target distance
+    while ((back_ultrasonic.get_value()/20) <= distance) {
       pros::delay(20);
     }
   }
+  // Stops the drive train
   FLMotor.move(0);
   FRMotor.move(0);
   BLMotor.move(0);
   BRMotor.move(0);
+  
+  // Stops the drive train from coasting
   BrakeDriveTrain();
   pros::delay(400);
   UnBrakeDriveTrain();
@@ -87,8 +98,9 @@ void Back_Ultrasonic_Drive(int distance, int speed) {
 
 
 /*
-  Turns the robot to the target position
-  not gyro assisted
+  Turns the robot to the target position,
+  not gyro assisted.
+  Used during opcontrol.
 */
 void Driver_Rotate(double turn, int speed) {
   FLMotor.move_relative(turn , speed);
@@ -99,8 +111,9 @@ void Driver_Rotate(double turn, int speed) {
 
 
 /*
-  Turns the robot to the target position
-  is gyro assisted
+  Turns the robot to the target position,
+  is gyro assisted.
+  Used in auton.
 */
 void Rotate(int TargetPos, int speed) {
   bool IsLeft;
@@ -121,15 +134,15 @@ void Rotate(int TargetPos, int speed) {
   }
 
   /* 
-    Lowers the resolution of the gyro and devides the turn in half
-    This gives use some padding so we don't spin indefinitely if we over shoot
+    Lowers the resolution of the gyro and devides the turn in half.
+    This gives us some padding so if we over shoot don't spin indefinitely.
   */
   TargetPos = TargetPos / 2;
   TargetPos = TargetPos + (GyroPos() / 2);
 
   /* 
-    Keeps use within 180 and -180
-    Remember we divided everything in half so we are working in 180 not 360
+    Keeps the target within 180 and -180.
+    Remember we divided everything in half so we are working in 180 not 360.
   */
   if (TargetPos > 180) {
     TargetPos = TargetPos - 180;
@@ -139,8 +152,8 @@ void Rotate(int TargetPos, int speed) {
   }
 
   /* 
-    We are waiting for our gyro position to equal or surpass our turn
-    then stopping the motors
+    Waiting for our gyro position to equal or surpass our turn.
+    then stopping the motors.
   */
   if (IsLeft == true) {
     while (TargetPos >= (GyroPos() / 2)) {
@@ -164,7 +177,11 @@ void Rotate(int TargetPos, int speed) {
 
 // Function for setting the drive trian breaks
 void BrakeDriveTrain() {
-  // Keeps the joistics from over writing the target positions of the motors
+  /* 
+    This veriable keeps the joistics
+    from over writing the target position 
+    of the motors when it's true
+  */
   IsBreaking = true;
   FLMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   FRMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -189,7 +206,7 @@ void UnBrakeDriveTrain() {
 }
 
 
-// Function for seting the cap flipper side to be the front side
+// Function for seting the Arm to be the front side
 void SetBackwords() {
   FLMotor.set_reversed(true);
   FRMotor.set_reversed(false);
@@ -199,7 +216,7 @@ void SetBackwords() {
 }
 
 
-// Function for seting the ball shooter side to be the front side
+// Function for seting the shooter to be the front side
 void SetForwards() {
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
@@ -215,7 +232,7 @@ void DriveTrain_fn(void* param) {
   int RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
 
-  // Setting the revering state of the motors
+  // Setting the revering states of the motors
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
@@ -226,12 +243,17 @@ void DriveTrain_fn(void* param) {
     LeftControls = master.get_analog(ANALOG_LEFT_Y);
     RightControls = master.get_analog(ANALOG_RIGHT_Y);
 
-    //Controls how the motors move
+    /*
+      Checks if the breaks are on.
+      If so don't run the joistic code.
+    */
     if (IsBreaking != true) {
+      // Sets what side of the robot is forward
       if (IsForward == true) {
         /* 
-          Checking if the motors are plugged in 
-          if not then dissabling the oposite one to keep the drive train equal
+          Checks if the motors are plugged in based on there temps.
+          If one isn't plugged in then disable the oposite one 
+          to keep the drive train equal.
         */
         if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
           BLMotor.move(LeftControls);
@@ -250,8 +272,9 @@ void DriveTrain_fn(void* param) {
       }
       else {
         /* 
-          Checking if the motors are plugged in 
-          if not then dissabling the oposite one to keep the drive train equal
+          Checks if the motors are plugged in based on there temps.
+          If one isn't plugged in then disable the oposite one 
+          to keep the drive train equal.
         */
         if (int(pros::c::motor_get_temperature(FLMotorport)) == 2147483647 || int(pros::c::motor_get_temperature(FRMotorport)) == 2147483647) {
           BLMotor.move(RightControls);
@@ -270,7 +293,7 @@ void DriveTrain_fn(void* param) {
       }
     }
 
-    // Drive train lock and unlock button
+    // A button for setting the drive train breaks
     if (master.get_digital_new_press(DIGITAL_UP) || master.get_digital_new_press(DIGITAL_DOWN)) {
       if (IsBreaking == true) {
         UnBrakeDriveTrain();
@@ -280,7 +303,7 @@ void DriveTrain_fn(void* param) {
       }
     }
 
-    // Drive train directional control buttons
+    // Buttons for setting which side of the robot is forwards
     if (master.get_digital_new_press(DIGITAL_L1)) {
       SetBackwords();
     }

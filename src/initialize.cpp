@@ -1,11 +1,11 @@
 #include "main.h"
 
-/**
- * Runs initialization code. This occurs as soon as the program is started.
- *
- * All other competition modes are blocked by initialize; it is recommended
- * to keep execution time for this mode under a few seconds.
- */
+/*
+  Runs initialization code. This occurs as soon as the program is started.
+ 
+  All other competition modes are blocked by initialize; it is recommended
+  to keep execution time for this mode under a few seconds.
+*/
 
 // Toggle button for parking in auton
 void on_center_button() {
@@ -32,7 +32,7 @@ void on_right_button() {
 }
 
 void initialize() {
-  // Initializing lcd screen and printing Initial text
+  // Initializes the lcd screen and prints initial text
   pros::lcd::initialize();
   if (IsParking == true) {
     pros::lcd::set_text(7, "                     Parking");
@@ -42,17 +42,18 @@ void initialize() {
   }
   pros::lcd::set_text(6, titles[selection]);
 
-  // Sets a callback function for the buttons
+  // Sets the callback function for each button
   pros::lcd::register_btn1_cb(on_center_button);
   pros::lcd::register_btn0_cb(on_left_button);
   pros::lcd::register_btn2_cb(on_right_button);
 
-  // Sets Initial revering states for the motors
+  // Sets Initial revering states of the motors
   FLMotor.set_reversed(false);
   FRMotor.set_reversed(true);
   BLMotor.set_reversed(false);
   BRMotor.set_reversed(true);
 
+  // Starts a thread for diagnostics
   pros::Task Diagnostics(Diagnostics_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 
   // Tells the arm to hold it's position
@@ -68,6 +69,7 @@ void initialize() {
   When the robot is enabled, this task will exit
 */
 void disabled() {
+  // Prints it's feelings to the screen
   pros::lcd::set_text(1, "How rude you disabled me.");
 }
 
