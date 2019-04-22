@@ -39,7 +39,7 @@ void SkillsAuton() {
   pros::delay(400);
 
   Drive(200, 200, 30);
-  Rotate(-78, 50);
+  Rotate(-76, 50);
 
 
   /*
@@ -143,7 +143,7 @@ void SkillsAuton() {
     Intake off
   */
   Intake.move(100);
-  Drive(6000, 6000, 150);
+  Drive(5800, 5800, 150);
   Intake.move(0);
 }
 
