@@ -21,7 +21,7 @@ void RedFlag() {
   pros::delay(200);
   Intake.move(0);
   pros::delay(100);
-  Drive(-3500, -3500, 120);
+  Drive(-3400, -3400, 120);
 
   /*
     Intake down
@@ -69,18 +69,18 @@ void RedFlag() {
     Drive back
     Flip the cap
   */
-  Rotate(-8, 30);
+  Rotate(-10, 30);
   Drive(1400, 1200, 100);
 
   Drive(-2150, -2150, 100);
 
-  Rotate(-80, 50);
+  Rotate(-84, 50);
 
   Drive(-1000, -1000, 100);
 
-  Arm.move_relative(900, 100);
+  Arm.move_relative(500, 60);
   pros::delay(800);
-  Arm.move_relative(-900, 100);
+  Arm.move_relative(-400, 100);
 }
 
 void RedCap() {
@@ -174,7 +174,7 @@ void BlueFlag() {
   pros::delay(400);
 
   Drive(200, 200, 30);
-  Rotate(80, 50);
+  Rotate(83, 50);
 
 
   /*
@@ -191,7 +191,7 @@ void BlueFlag() {
   pros::delay(300);
   Intake.move(0);
 
-  Drive(1300, 1300, 100);
+  Drive(1100, 1100, 100);
 
   pros::delay(300);
   Intake.move(100);
@@ -207,8 +207,8 @@ void BlueFlag() {
     Drive back
     Flip the cap
   */
-  Rotate(6, 30);
-  Drive(1400, 1300, 100);
+  Rotate(7, 30);
+  Drive(1550, 1550, 100);
 
   Drive(-2000, -2000, 100);
 
@@ -216,9 +216,9 @@ void BlueFlag() {
 
   Drive(-1000, -1000, 100);
 
-  Arm.move_relative(900, 100);
+  Arm.move_relative(600, 60);
   pros::delay(800);
-  Arm.move_relative(-900, 100);
+  Arm.move_relative(-600, 100);
 }
 
 void BlueCap() {

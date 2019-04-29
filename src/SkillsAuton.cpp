@@ -9,18 +9,18 @@ void SkillsAuton() {
     Get the ball from under the cap
     Drive Back to the starting wall
   */
-  Intake.move(200);
-  Drive(4000, 4000, 180);
-  pros::delay(200);
+  Intake.move(100);
+  Drive(3400, 3400, 50);
+  // pros::delay(200);
   Intake.move(0);
   pros::delay(100);
-  Drive(-4100, -4100, 120);
+  // Drive(-3400, -3400, 120);
   FLMotor.move(-60);
   BLMotor.move(-60);
   pros::delay(10);
   FRMotor.move(-60);
   BRMotor.move(-60);
-  pros::delay(1000);
+  pros::delay(4000);
   FLMotor.move(0);
   BLMotor.move(0);
   FRMotor.move(0);
@@ -39,7 +39,7 @@ void SkillsAuton() {
   pros::delay(400);
 
   Drive(200, 200, 30);
-  Rotate(-76, 50);
+  Rotate(-79, 50);
 
 
   /*
@@ -49,8 +49,8 @@ void SkillsAuton() {
     Shoot the middle flag
     Shooter off
   */
-  // Drive(1500, 1500, 100);
-  Back_Ultrasonic_Drive(242, 50);
+  Drive(1250, 1250, 100);
+  // Front_Ultrasonic_Drive(86, 50);
 
   pros::delay(600);
   Intake.move(100);
@@ -73,7 +73,7 @@ void SkillsAuton() {
     Back into wall
   */
   Rotate(-12, 30);
-  Drive(1400, 1200, 100);
+  Drive(1800, 1600, 100);
 
   Drive(-2000, -2000, 100);
 
@@ -122,7 +122,7 @@ void SkillsAuton() {
   Drive(-500, -500, 30);
   Rotate(85, 50);
 
-  Drive(-3200, -3200, 80);
+  Drive(-3250, -3250, 80);
   Rotate(85, 50);
   
   FLMotor.move(-60);
@@ -143,7 +143,9 @@ void SkillsAuton() {
     Intake off
   */
   Intake.move(100);
-  Drive(5800, 5800, 150);
+  Drive(3900, 3900, 150);
+  pros::delay(500);
+  Drive(2400, 2400, 150);
   Intake.move(0);
 }
 

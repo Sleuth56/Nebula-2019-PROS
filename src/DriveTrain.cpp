@@ -23,7 +23,7 @@ int GyroPos() {
 void Drive(double leftInches, double rightInches, int speed) {
   FRMotor.move_relative(leftInches, speed);
   BRMotor.move_relative(rightInches, -speed);
-  pros::delay(10);
+  // pros::delay(10);
   FLMotor.move_relative(rightInches, speed);
   BLMotor.move_relative(leftInches, -speed);
   do {
